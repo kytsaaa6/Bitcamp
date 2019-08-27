@@ -15,3 +15,14 @@ function logout() {
 		}
 	});
 }
+
+function logoutAdmin() {
+	$.ajax({
+		url: 'http://localhost:8080/bitcamp/rest-admin/login',
+		type: 'GET',
+		success:function(data) {
+			alert(data);
+			location.href = "index.jsp";
+		}
+	});
+}

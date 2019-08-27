@@ -209,3 +209,15 @@
 </body>
 
 </html>
+<%-- <c:if test="${sessionScope.loginInfo eq null}">
+	<c:redirect url="index.jsp"/>
+</c:if> --%>
+<%-- <c:if test="${sessionScope.loginInfo eq null}">
+	<script>location.replace("index.jsp");</script>
+</c:if> --%>
+<%-- <c:if test="${empty loginInfo}">
+	<script>
+		alert('로그인필요!!!');
+		location.href = '<%= request.getContextPath()%>/index.jsp';
+	</script>
+</c:if> --%>

@@ -1,6 +1,6 @@
 package com.ny.bit.member.model;
 /*-------------------
- * 파일이름: Admin.java
+ * 파일이름: LoginUser.java
  * 파일설명: 멤버 관련 model(DTO) 
  * 작성자: 김나연
  * 버전: 1.0.1
@@ -12,54 +12,50 @@ package com.ny.bit.member.model;
 
 
 
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import java.util.Random;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Admin {
+public class LoginAdmin {
+	
+/* 변수설명
+ * 	`idx_m`   INT(7)      NOT NULL, -- 회원번호
+ * 	`id`      VARCHAR(50) NOT NULL, -- 아이디
+ * 	`pw`      VARCHAR(45) NOT NULL, -- 비밀번호
+ * 	`name`    VARCHAR(20) NOT NULL, -- 이름
+ * 	`phone`   INT(15)     NOT NULL, -- 전화번호
+ * 	`code`    VARCHAR(45) NULL,     -- 코드
+ * 	`verify`  VARCHAR(1)  NULL     DEFAULT 'N', -- 인증여부
+ * 	`regdate` DATETIME    NULL     DEFAULT NOW(), -- 가입날짜
+ * 	`out`     VARCHAR(1)  NULL     DEFAULT 'N' -- 탈퇴여부
+ * */
 	private int idx;
 	private String id;
-	@JsonIgnore
 	private String pw;
 	private String name;
-	@JsonFormat(pattern = "yyyy-MM-dd")	
 	private Date regdate;
 	
 	
-	public Admin() {
-	}
-	public Admin(String id, String pw, String name) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.regdate = new Date();
-	}
-	public Admin(int idx, String id, String pw, String name, Date regdate) {
-		this.idx = idx;
+	public LoginAdmin(String id, String pw, String name, Date regdate) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.regdate = regdate;
 	}
 	
-	public boolean matchPW(String pw) {
-		return pw!=null && !pw.isEmpty() && this.pw.equals(pw);
+	public LoginAdmin(int idx, String id, String pw, String name, Date regdate) {
+		this.idx = idx;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.regdate = regdate;
 	}
-	
-	public LoginAdmin toLoginAdmin() {
-		return new LoginAdmin(idx, id, pw, name, regdate);
-	}
-	
+
+
 	@Override
 	public String toString() {
-		return "Admin [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", regdate=" + regdate + "]";
-	}
-	public int getIdx() {
-		return idx;
-	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+		return "LoginAdmin [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", regdate=" + regdate + "]";
 	}
 	public String getId() {
 		return id;
@@ -84,6 +80,12 @@ public class Admin {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 	
 	

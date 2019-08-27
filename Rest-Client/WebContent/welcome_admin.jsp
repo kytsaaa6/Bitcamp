@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>USER::Welcome to BITCAMP</title>
+<title>Welcome to BITCAMP</title>
 
 <!-- css -->
 <link href="static/css/bootstrap.min.css" rel="stylesheet"
@@ -64,9 +64,9 @@
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="active"><a href="#intro">Home</a></li>
-								<li><a href="#login">LOGIN</a></li>
-								<li><a href="#join">Join</a></li>
+								<li><a href="#">Room</a></li>
 								<li><a href="#member">member</a></li>
+								<li><a onclick="logoutAdmin()">Logout</a></li>
 							</ul>
 						</div>
 						<!-- /.Navbar-collapse -->
@@ -107,13 +107,12 @@
 							</h2>
 							<br>
 							<h3 class="h-bold">
-								<span>cozy and comfort rooms Waiting for your happy
-									vacation</span>
+								<span>SHOW YOUR cozy and comfort rooms to attract OUR Guests</span>
 							</h3>
 							<br>
 							<div class="">
-								<a class="btn btn-theme btn-sm btn-min-block" href="#login">LOGIN</a><a
-									class="btn btn-theme btn-sm btn-min-block" href="#join">JOIN</a>
+								<a class="btn btn-theme btn-sm btn-min-block" href="#">Room</a><a
+									class="btn btn-theme btn-sm btn-min-block" href="#member">member</a>
 							</div>
 						</div>
 					</div>
@@ -133,13 +132,12 @@
 							</h2>
 							<br>
 							<h3 class="h-bold">
-								<span>cozy and comfort rooms Waiting for your happy
-									vacation</span>
+								<span>SHOW YOUR cozy and comfort rooms to attract OUR Guests</span>
 							</h3>
 							<br>
 							<div class="">
-								<a class="btn btn-theme btn-sm btn-min-block" href="#login">LOGIN</a><a
-									class="btn btn-theme btn-sm btn-min-block" href="#join">JOIN</a>
+								<a class="btn btn-theme btn-sm btn-min-block" href="#">ROOM</a><a
+									class="btn btn-theme btn-sm btn-min-block" href="#member">member</a>
 							</div>
 						</div>
 					</div>
@@ -163,194 +161,6 @@
 	<!-- /Section: intro -->
 
 
-
-
-	<!-- Section: login -->
-	<section id="login" class="home-section color-dark bg-white">
-		<div class="container marginbot-50">
-			<div class="row">
-				<div class="col-lg-4 col-lg-offset-4">
-					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
-						<div class="section-heading text-center">
-							<h2 class="h-bold">Login</h2>
-							<div class="divider-header"></div>
-							<p>Login Bitcamp and Make a GREAT Reservation for Your
-								Holidays!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--user divide-->
-			<div class="col-md-12 text-center">
-				<div class="">
-					<a class="btn btn-theme btn-skin btn-sm btn-min-block" id="loginMemBtn"
-						onclick="showMemberLogin()">MEMBER</a> <a
-						class="btn btn-theme btn-sm btn-min-block" id="loginAdBtn"
-						onclick="showAdminLogin()">ADMIN</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-
-			<div class="row marginbot-80">
-				<div class="col-md-4 col-md-offset-4">
-					<div id="sendmessage">Thank you for visit BitCamp!</div>
-					<div id="errormessage"></div>
-					
-					<!-- MEM -->
-					<form method="post" role="form" class="" id="loginForm">
-						<div class="form-group">
-							<input type="email" class="form-control" name="id" id="lid"
-								placeholder="Your Email" data-rule="email" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="lpw"
-								placeholder="Your Password" />
-							<div class="validation"></div>
-						</div>
-						<div class="text-center">
-							<button type="button" class="btn btn-skin btn-lg btn-block" onclick="login()">Login
-								Bitcamp</button>
-						</div>
-					</form>
-					
-					<!-- admin -->
-					<form method="post" role="form" class="" id="loginAdForm">
-						<div class="form-group">
-							<input type="email" class="form-control" name="id" id="laid"
-								placeholder="Your ADMIN ID" data-rule="email" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="lapw"
-								placeholder="Your Password" />
-							<div class="validation"></div>
-						</div>
-						<div class="text-center">
-							<button type="button" class="btn btn-skin btn-lg btn-block" onclick="loginAdmin()">ADMIN Login
-								Bitcamp</button>
-						</div>
-					</form>
-
-				</div>
-			</div>
-
-
-		</div>
-
-	</section>
-	<!-- /Section: about -->
-
-
-	<!-- Section: join -->
-	<section id="join" class="home-section color-dark bg-gray">
-		<div class="container marginbot-50">
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3">
-					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
-						<div class="section-heading text-center">
-							<h2 class="h-bold">Join</h2>
-							<div class="divider-header"></div>
-							<p>Join Bitcamp and Find a GREAT Room for Your Holiday
-								Location!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--user divide-->
-			<div class="col-md-12 text-center">
-				<div class="">
-					<a class="btn btn-theme btn-skin btn-sm btn-min-block" id="showMem"
-						onclick="showMember()">MEMBER</a> <a
-						class="btn btn-theme btn-sm btn-min-block" id="showAdmin"
-						onclick="showAdmin()">ADMIN</a>
-				</div>
-			</div>
-		</div>
-		<!--mem-->
-		<div class="container" id="memForm">
-			<div class="row marginbot-80">
-				<div class="col-md-6 col-md-offset-3">
-
-					<div id="sendmessage">Thank you for Join BitCamp!</div>
-					<div id="errormessage"></div>
-					<form role="form" class="contactForm">
-						<div class="form-group">
-							<input type="email" class="form-control" name="id" id="id"
-								placeholder="Your Email" data-rule="email"
-								data-msg="Please enter a valid email" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="pw"
-								placeholder="Your Password" data-rule="minlen:8"
-								data-msg="Please enter at least 8 chars of password" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="name"
-								placeholder="Your Name" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="phone" class="form-control" id="phone"
-								placeholder="Your Contact Number" data-rule="minlen:13"
-								data-msg="Please enter at least 10 numbers" />
-							<div class="validation"></div>
-						</div>
-						<div class="text-center">
-							<button type="button" class="btn btn-skin btn-lg btn-block"
-								onclick="join()">Join Bitcamp</button>
-						</div>
-					</form>
-
-				</div>
-			</div>
-
-
-		</div>
-
-
-		<!--admin-->
-		<div class="container" id="adminForm" style="display: none">
-			<div class="row marginbot-80">
-				<div class="col-md-6 col-md-offset-3">
-
-					<div id="sendmessage">Thank you for Join BitCamp!</div>
-					<div id="errormessage"></div>
-					<form action="" method="post" role="form" class="contactForm">
-						<div class="form-group">
-							<input type="text" class="form-control" name="id" id="id"
-								placeholder="Your ADMIN ID" data-rule="minlen:4"
-								data-msg="Please enter a valid ID" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="pw"
-								placeholder="Your Password" data-rule="minlen:4"
-								data-msg="Please enter at least 8 chars of password" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="name"
-								placeholder="Your Name" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="text-center">
-							<button type="button" class="btn btn-skin btn-lg btn-block" onclick="joinAd()">REGISTER
-								ADMIN</button>
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- /Section: services -->
 
 	<!-- Section: member -->
 	<section id="member"
@@ -464,6 +274,7 @@
 	<!-- /Section: member -->
 
 
+
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -502,16 +313,12 @@
 	<script src="static/js/custom.js"></script>
 	<!-- <script src="static/contactform/contactform.js"></script> -->
 	<script src="static/default.js"></script>
+	<script src="static/user_ny.js"></script>
 
 </body>
 
 </html>
 
-<%-- 
-<c:if test="${sessionScope.adminInfo ne null}">
-	<c:redirect url="welcome_admin.jsp"/>
-</c:if>
-
-<c:if test="${sessionScope.loginInfo ne null}">
-	<c:redirect url="welcome.jsp"/>
+<%-- <c:if test="${sessionScope.adminInfo eq null}">
+	<c:redirect url="index.jsp"/>
 </c:if> --%>

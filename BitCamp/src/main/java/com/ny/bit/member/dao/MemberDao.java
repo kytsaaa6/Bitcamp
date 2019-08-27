@@ -13,6 +13,7 @@ package com.ny.bit.member.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ny.bit.member.model.Admin;
 import com.ny.bit.member.model.User;
 
 public interface MemberDao {
@@ -25,5 +26,7 @@ public interface MemberDao {
 	public int updateUserOut(int idx); //업데이트-회원탈퇴처리
 	
 	public int updateVerify(String id, String code); //이메일인증verify 처리
-		
+	
+	/*-------- admin --------*/
+	public Admin selectAdById(String id);
 }

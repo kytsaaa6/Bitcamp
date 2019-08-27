@@ -71,6 +71,7 @@ function join() {
 	});
 }
 
+
 // login
 //$('#loginForm').submit(function() {
 function login() {
@@ -86,7 +87,7 @@ function login() {
 		success : function(data) {
 			if (data == 'OK') {
 				alert('OK');
-				location.href = "welcome.jsp"
+				location.replace("welcome.jsp");
 			} else if (data == 'yet') {
 				alert('yet');
 			} else if (data == 'out') {
@@ -230,3 +231,103 @@ function showAdmin() {
 	$("#showAdmin").addClass("btn-skin");
 	$("#showMem").removeClass("btn-skin");
 }
+
+
+
+/*-----------------------------------------------------*/
+/*                       A D M I N                     */
+/*-----------------------------------------------------*/
+
+//function joinAd() {
+//$.ajax({
+//	url:'http://localhost:8080/bitcamp/rest-admin',
+//	type : 'POST',
+//	data : JSON.stringify({
+//		id : $('.contactForm #id').val(),
+//		pw : $('.contactForm #pw').val(),
+//		name : $('.contactForm #name').val(),
+//		phone : $('.contactForm #phone').val()
+//	}),
+//	contentType : 'application/json;charset=utf-8',
+//	dataType : 'json',
+//	success : function(data) {
+//		// if(data > 0) {
+//		if (data = 'success') {
+//			alert('성~~~공');
+//			// } else {
+//		} else if (data = 'fail') {
+//			alert('실~~~패');
+//			alert(JSON.stringify(data));
+//		}
+//	},
+//	error : function(data) {
+//		alert('에러,,,');
+//		alert(JSON.stringify(data));
+//	},
+//	complete : function() {
+//		list();
+//	}
+//});
+//}
+
+
+function loginAdmin() {
+	
+	$.ajax({
+		url : 'http://localhost:8080/bitcamp/rest-admin/login',
+		type : 'POST',
+		data : JSON.stringify({
+			id : $('#laid').val(),
+			pw : $('#lapw').val()
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			if (data == 'OK') {
+				alert('OK');
+				location.replace("welcome_admin.jsp");
+			} else if (data == 'NO') {
+				alert('fail');
+			}
+		},
+		error : function(data) {
+			alert('errrrrrrrrror data: ' + data);
+		},
+		complete: function() {
+			$('#laid').val(''),
+			$('#lapw').val('')
+		}
+	});
+}
+
+
+function showMemberLogin() {
+	$('#loginForm').css('display', 'block');
+	$('#loginAdForm').css('display', 'none');
+	$("#loginMemBtn").addClass("btn-skin");
+	$("#loginAdBtn").removeClass("btn-skin");
+}
+
+function showAdminLogin() {
+	$('#loginAdForm').css('display', 'block');
+	$('#loginForm').css('display', 'none');
+	$("#showAdminLogin").addClass("btn-skin");
+	$("#loginAdBtn").removeClass("btn-skin");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import com.ny.bit.member.dao.MemberDao;
 import com.ny.bit.member.model.JoinUser;
-import com.ny.bit.member.model.MailService;
 import com.ny.bit.member.model.User;
 
 @Service(value = "joinService")
