@@ -189,22 +189,23 @@
 				<div class="col-md-4 col-md-offset-4">
 					<div id="sendmessage">Thank you for visit BitCamp!</div>
 					<div id="errormessage"></div>
-					<form action="" method="post" role="form" class="">
+					<form method="post" role="form" class="" id="loginForm">
 						<div class="form-group">
-							<input type="email" class="form-control" name="id" id="id"
+							<input type="email" class="form-control" name="id" id="lid"
 								placeholder="Your Email" data-rule="email" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="pw"
+							<input type="password" class="form-control" name="pw" id="lpw"
 								placeholder="Your Password" />
 							<div class="validation"></div>
 						</div>
 						<div class="text-center">
-							<button type="submit" class="btn btn-skin btn-lg btn-block">Login
+							<button type="button" class="btn btn-skin btn-lg btn-block" onclick="login()">Login
 								Bitcamp</button>
 						</div>
 					</form>
+					<div id="loginMsg"></div>
 
 				</div>
 			</div>

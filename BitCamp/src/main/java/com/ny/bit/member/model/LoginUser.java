@@ -30,6 +30,7 @@ public class LoginUser {
  * 	`regdate` DATETIME    NULL     DEFAULT NOW(), -- 가입날짜
  * 	`out`     VARCHAR(1)  NULL     DEFAULT 'N' -- 탈퇴여부
  * */
+	private int idx;
 	private String id;
 	private String pw;
 	private String name;
@@ -38,7 +39,6 @@ public class LoginUser {
 	
 	
 	public LoginUser(String id, String pw, String name, String phone, Date regdate) {
-		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -46,10 +46,21 @@ public class LoginUser {
 		this.regdate = regdate;
 	}
 	
+	public LoginUser(int idx, String id, String pw, String name, String phone, Date regdate) {
+		this.idx = idx;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.phone = phone;
+		this.regdate = regdate;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "LoginUser [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", regdate=" + regdate
-				+ "]";
+		return "LoginUser [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone
+				+ ", regdate=" + regdate + "]";
 	}
 	public String getId() {
 		return id;
@@ -80,6 +91,12 @@ public class LoginUser {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 	
 	

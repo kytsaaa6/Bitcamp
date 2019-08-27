@@ -16,8 +16,8 @@ import java.util.Map;
 import com.ny.bit.member.model.User;
 
 public interface MemberDao {
-//	public User selectById(String id); //회원정보가져오기(login + update + delete시)
-	public User selectById(int idx); //회원정보가져오기(login + update + delete시)
+	public User selectById(String id); //회원정보가져오기(login + update + delete시)
+	public User selectByIdx(int idx); //회원정보가져오기(login + update + delete시)
 	public int insertUser(User user) ; //회원가입
 //	public int selectTotalCount(Map<String, Object> params); //회원총인원
 	public List<User> selectAllList(); //전체회원리스트가져오기

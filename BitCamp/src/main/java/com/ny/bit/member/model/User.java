@@ -43,7 +43,7 @@ public class User {
 	private char verify;
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date regdate;
-	private char out;
+	private char out; 
 	
 	
 	
@@ -53,7 +53,7 @@ public class User {
 	}
 
 	public LoginUser toLoginUser() {
-		return new LoginUser(id, pw, name, phone, regdate);
+		return new LoginUser(idx, id, pw, name, phone, regdate);
 	}
 	
 	public User(String id, String pw, String name, String phone) {

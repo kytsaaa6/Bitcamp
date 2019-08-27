@@ -19,7 +19,7 @@ public class EditService {
 	public User getOne(int id) {
 		
 		dao = template.getMapper(MemberDao.class);
-		User user = dao.selectById(id);
+		User user = dao.selectByIdx(id);
 
 		return user;
 	}

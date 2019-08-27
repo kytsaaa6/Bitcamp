@@ -21,6 +21,10 @@
 	</resultMap>
 	
 	<select id="selectById" resultMap="User" >
+		select * from bitcamp.mem where id = #{id}
+	</select>
+	
+	<select id="selectByIdx" resultMap="User" >
 		select * from bitcamp.mem where idx_m = #{idx}
 		<!-- select * from bitcamp.mem where id like concat(#{id}, '%') -->
 	</select>
