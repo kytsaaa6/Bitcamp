@@ -1,0 +1,16 @@
+
+BitcampClient/.classpath
+BitcampClient/.project
+BitcampClient/.settings/.jsdtscope
+BitcampClient/.settings/org.eclipse.jdt.core.prefs
+BitcampClient/.settings/org.eclipse.wst.common.component
+BitcampClient/.settings/org.eclipse.wst.common.project.facet.core.xml
+BitcampClient/.settings/org.eclipse.wst.jsdt.ui.superType.container
+BitcampClient/.settings/org.eclipse.wst.jsdt.ui.superType.name
+BitcampClient/WebContent/WEB-INF/lib/jstl.jar
+BitcampClient/WebContent/WEB-INF/lib/standard.jar
+BitcampClient/WebContent/META-INF/MANIFEST.MF
+BitcampClient/WebContent/apitest.jsp
+BitcampClient/WebContent/image/noImg.png
+BitcampClient/WebContent/WEB-INF/web.xml
+BitcampClient/WebContent/static/apitest.js
