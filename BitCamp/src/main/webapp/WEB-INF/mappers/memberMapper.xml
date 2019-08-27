@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	최초생성날짜: 2019-08-25 pm.07:25 
+	최종수정날짜: 2019-08-25 pm.07:25 
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ny.bit.member.dao.MemberDao">
+
+	<resultMap id="User" type="com.ny.bit.member.model.User">
+		<result property="idx" column="idx_m"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="code" column="code"/>
+		<result property="verify" column="verify"/>
+		<result property="regdate" column="regdate" javaType="java.util.Date"/>
+		<result property="out"  column="out"/>
+	</resultMap>
+	
+	<select id="selectById" resultMap="User" >
+		select * from bitcamp.mem where idx_m = #{idx}
+		<!-- select * from bitcamp.mem where id like concat(#{id}, '%') -->
+	</select>
+	
+	<insert id="insertUser" parameterType="com.ny.bit.member.model.User">
+		insert into bitcamp.mem (ID, PW, NAME, PHONE, CODE) 
+		values (#{id}, #{pw}, #{name}, #{phone}, #{code})
+	</insert>
+	
+	<select id="selectAllList" resultMap="User">
+		select * from bitcamp.mem 
+		order by idx_m desc
+	</select>
+	
+	<update id="updateUser" parameterType="com.ny.bit.member.model.EditUser">
+		update bitcamp.mem 
+		set name = #{name}, 
+		phone = #{phone}
+		where idx_m = #{idx}
+	</update>
+	
+	<update id="updateUserOut">
+		update bitcamp.mem 
+		set mem.out = 'Y' <!-- out은 예약어라 테이블 명 쓰고 해야 함 -->
+		where idx_m = #{idx}
+	</update>
+	
+	<update id="updateVerify">
+		update bitcamp.mem 
+			set verify = 'Y'
+			where id = #{param1} 
+			and code = #{param2}
+	</update>
+	
+</mapper>

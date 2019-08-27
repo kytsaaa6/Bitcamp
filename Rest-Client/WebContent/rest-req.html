@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.card {
+		padding : 10px;
+		width: 500px;
+		margin : 15px 35px;
+		text-align: center;
+		border : 1px solid;
+		background-color: #F7F9D4;
+		border-radius: 3px;
+		font-size: 0.85em;
+	}
+	
+</style>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<hr>
+	
+	<form id="joinForm" method="post">
+			아이디 뭐할거야 <input type="text" name="id" id="id"> <br>
+			패스워드는?????<input type="password" name="pw" id="pw"> <br>
+			이름좀알려줄래?<input type="text" name="name" id="name"> <br>
+			<input type="submit" value="가입할래요오오오옹!">
+	</form>
+	
+<script>
+
+	$(document).ready(function() {
+		
+		$('#joinForm').submit(function(){
+			
+			$.ajax({
+				url:'http://localhost:8080/mm/rest/members',
+				type: 'POST',
+				data: {
+                        //stringify로 하면 json형식으로 넘어가기 때문에 
+                        //아래와 같이 parameter 형식으로 넘겨서 보내야 함
+						id : $('#id').val(),
+                        pw : $('#pw').val(),
+                        name : $('#name').val()
+			         },
+				success: function(data) {
+					if(data == 'success') {
+                        alert('성~~~공');
+                    } else if (data == 'fail') {
+                        alert('실~~~패');
+                    }
+                    
+				}
+					
+			});
+/* 			$.ajax({
+				url:'http://localhost:8080/mm/rest/members',
+				type: 'POST',
+				data: JSON.stringify({
+                        id : $('#id').val(),
+                        pw : $('#pw').val(),
+                        name : $('#name').val()
+			         }),
+				contentType: 'application/json;charset=utf-8',
+				dataType: 'json',
+				success: function(data) {
+					if(data == 'success') {
+                        alert('성~~~공');
+                    } else if (data == 'fail') {
+                        alert('실~~~패');
+                    }
+                    
+				}
+					
+			}); */
+           return false; 
+		});
+		
+	});
+
+</script>	
+	
+</body>
+</html>

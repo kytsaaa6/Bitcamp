@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.btn_manage {
+	padding: 0 12px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.btn_manage:hover {
+	background-color: #1bbca3;
+	color: #fff;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+/* 수정할 멤버 폼 가져오기 */
+#mEditForm {
+	display: none;
+}

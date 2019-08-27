@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.card {
+		padding : 10px;
+		width: 500px;
+		margin : 15px 35px;
+		text-align: center;
+		border : 1px solid;
+		background-color: #F7F9D4;
+		border-radius: 3px;
+		font-size: 0.85em;
+	}
+	
+	.card .btn {
+		line-height: 50px;
+		cursor: pointer;
+	}
+	
+	.card span {
+		line-height: 25px;
+		vertical-align: middle;
+	}
+	
+	.card span,
+	.card .btn {
+		width: 50px;    
+		height: 50px;
+	    display: inline-block;
+	    margin: 5px;
+	    border-radius: 50px;
+		background-color: #fff;
+    	font-size: 1.2em;
+	}
+	
+	#join,
+	#edit {
+		width: 500px;
+		margin: 0px auto;
+		padding: 20px;
+		text-align: center;
+	}
+	
+	#join input,
+	#edit input{
+	    width: 290px;
+    	margin: 5px 15px;
+   	    line-height: 30px;
+   	    padding: 3px;
+	}
+	
+	#list {
+		width: 600px;
+		margin: 0 auto;
+		padding: 10px;
+	}
+	
+	.color_red {
+		color: red;
+	}
+	.color_blue {
+		color:blue;
+	}
+	#idcheck {
+		display: none;
+	}
+	
+	#edit {
+		display: none;
+	}
+	
+	.submit {
+		background-color: #8ae;
+	    display: block;
+	    width: 350px;
+	    margin: 0 auto;
+	    line-height: 35px;
+	    cursor: pointer;
+	}
+</style>
+</head>
+<body>
+
+<div id="join">
+	<h1>회원가입</h1>
+	<hr>
+	
+	<form id="joinForm" method="post">
+			아이디 뭐할거야 <input type="text" name="id" id="id"> <br>
+				<input type="checkbox" id="idcheck">
+	            <h5></h5>
+			패스워드는?????? <input type="password" name="pw" id="pw"> <br>
+			이름좀알려줄래?<input type="text" name="name" id="name"> <br>
+			<span class="submit" onclick="join()">가입할래요오오오옹!</span>
+			
+			<!-- <input type="submit" value="가입할래요오오오옹!"> -->
+	</form>
+</div>
+<div id="edit">
+	<h1>정보수정</h1>
+	<hr>
+	<form id="editForm" method="post"></form>
+</div>
+<div id="list">
+	<h1>회원리스트</h1>
+	<hr>
+	<div id="memberlist"></div>
+	
+</div>
+<script>
+
+	$(document).ready(function() {
+		list();
+		
+		//id check
+		$('#id').focusout(function(){
+			//ajax id전송 사용유무에 대한 결과 값 반환
+			$.ajax({
+				url: 'http://localhost:8080/mc/join/idcheck2', /* jsp를 사용하지 않고 바로 연결 */
+				method: 'get',
+				data: {
+					id : $(this).val()
+				},
+				success: function(data){
+						$(this).closest('h5').html('');
+						$('#idcheck +h5').removeClass('color_red');
+						$('#idcheck +h5').removeClass('color_blue');
+						
+					
+					if(data == 'Y'){
+						$('#idcheck').prop('checked', true);
+						$('#idcheck +h5').html('사용가능한 멋진 아이디!');
+						$('#idcheck +h5').addClass('color_blue');
+					} else {
+						$('#idcheck').prop('checked', false);
+						$('#idcheck +h5').html('사용중인 아이디이거나 탈퇴한 회원입니다.');
+						$('#idcheck +h5').addClass('color_red');
+					}
+				}
+			});
+		});
+	});
+	
+	function join() {
+			
+		$.ajax({
+			url:'http://localhost:8080/mc/rest/members',
+			type: 'POST',
+			data: JSON.stringify({
+                    id : $('#id').val(),
+                    pw : $('#pw').val(),
+                    name : $('#name').val()
+		         }),
+			contentType: 'application/json;charset=utf-8',
+			dataType: 'json',
+			success: function(data) {
+				if(data == 'success') {
+                    alert('성~~~공');
+                } else if (data == 'fail') {
+                    alert('실~~~패');
+                }
+			},
+			complete: function(){
+				$('#id').val('');
+				$('#pw').val('');
+				$('#name').val('');
+				$('h5').html('');
+				list();
+			}	
+		});
+	}
+	
+	function list(){
+    	$.ajax({
+		/* url:'http://localhost:8080/mc/rest/members', */
+		//restful로 우회접근
+		url:'http://localhost:8080/client/list',
+		type: 'GET',
+		success: function(data) {
+			/* alert(JSON.stringify(data)); */
+			var html = '';
+			for(var i = 0 ; i < data.length ; i++){
+				
+				html += '<div class="card">\n';
+				html += '<span>idx<br>' + data[i].idx +'</span>' ; 
+				html += '<span>id<br>' + data[i].id +'</span>' ;
+				html += '<span>name<br>' + data[i].name +'</span>' ; 
+				html += '<span>photo<br>' + data[i].photo +'</span>' ;
+				html += '<span>regDate<br>' + data[i].regDate +'</span> ' ;
+				html += '<span class="btn" onclick="edit(\''+data[i].id+'\')">edit</span>' ;
+				html += '<span class="btn" onclick="del('+data[i].idx+')">del</span>';
+				html += '</div>\n';
+			}
+			
+			$('#memberlist').html(html);
+			
+			}
+		});
+	}
+	
+	function del(idx){
+        if(confirm('delete??????')){
+            $.ajax({
+                url:'http://localhost:8080/mc/rest/members/'+idx,
+                type: 'DELETE',
+                success: function(data) {
+
+                    if(data == 'success'){
+                        alert('삭제되었습니다');
+                        list();
+                    } else {
+                        alert('실-패');
+                        list();
+                    }
+                },
+                error: function(){
+                    alert('error ㅠㅠㅠㅠ');
+                    list();
+                }
+            });
+        }
+    }
+    
+	function edit(id) {
+		if(confirm('정말 수정할거야?????리얼리????')){
+			$.ajax({
+				url:'http://localhost:8080/mc/rest/members/'+id,
+				type: 'GET',
+				error: function() {
+					alert('error.....');
+					list();
+				},
+				success: function(data) {
+					//alert(data.idx);
+					
+					$('#join').css('display','none');
+					$('#edit').css('display','block');
+					
+					var output = '';
+					output += '아이디는안바꿔줘<input type="text" value="'+data.id +'" disabled ><br>\n';
+					output += '패스워드는?????? <input type="password" id="pw2" name="pw"> <br>\n';
+					output += '이름 좀 알려줄래?<input type="text" id="name2" name="name"> <br>\n';
+					output += '<span class="submit" onclick="getEdit('+data.idx+')">수정할래요오오오옹!</span>';
+					$('#editForm').html(output);
+				}
+			});
+		}
+	}
+	
+	function getEdit(idx) {
+		
+		$.ajax({
+            url:'http://localhost:8080/mc/rest/members',
+            type: 'PUT',
+            data: JSON.stringify({
+            	idx: idx,
+            	pw : $('#pw2').val(),
+                name : $('#name2').val()
+            }),
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+            	alert(data);
+
+                if(data == 'success' ){
+                    alert('수정되었습니다');
+                } else {
+                    alert('실-패');
+                }
+            },
+            error: function(data){
+                alert('error ㅠㅠㅠㅠ');
+            	alert(data);
+            },
+            complete: function() {
+				list();
+				$('#edit').css('display','none');
+				$('#join').css('display','block');
+			}
+        });
+	}
+
+
+</script>	
+	
+</body>
+</html>

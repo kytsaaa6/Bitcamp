@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.card {
+		padding : 10px;
+		width: 500px;
+		margin : 15px 35px;
+		text-align: center;
+		border : 1px solid;
+		background-color: #F7F9D4;
+		border-radius: 3px;
+		font-size: 0.85em;
+	}
+	
+</style>
+</head>
+<body>
+	<h1>회원리스트</h1>
+	<hr>
+	<div id="memberlist"></div>
+
+	<script>
+		$(document).ready(function() {
+		  list();
+		});
+        
+        function list(){
+            	$.ajax({
+				url:'http://localhost:8080/mm/rest/members',
+				type: 'GET',
+				success: function(data) {
+					/* alert(JSON.stringify(data)); */
+					var html = '';
+					for(var i = 0 ; i < data.length ; i++){
+                        
+                        let v=data[i].id;
+                        
+						html += '<div class="card">\n';
+						html += 'idx : ' + data[i].idx +'<br>\n';
+						html += 'id : ' + data[i].id +'<br>\n';
+						html += 'name : ' + data[i].name +'<br>\n';
+						html += 'photo : ' + data[i].photo +'<br>\n';
+						html += 'regDate : ' + data[i].regDate +'<br>\n';
+                        html += '<button onclick="del(\''+v+'\')">삭제하기</button> <br>\n';
+						html += '</div>\n';
+					}
+					
+					$('#memberlist').html(html);
+					
+				}
+			});
+        }
+        
+        function del(id){
+            if(confirm('delete??????')){
+                $.ajax({
+                    url:'http://localhost:8080/mm/rest-api/members/'+id,
+                    type: 'DELETE',
+                    success: function(data) {
+
+                        if(data == 'success'){
+                            alert('삭제되었습니다');
+                            list();
+                        } else {
+                            alert('실-패');
+                            list();
+                        }
+                    },
+                    error: function(){
+                        alert('error ㅠㅠㅠㅠ');
+                        list();
+                    }
+                });
+            }
+        }
+        
+	</script>
+</body>
+</html>
