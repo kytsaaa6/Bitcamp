@@ -14,3 +14,12 @@ BitcampClient/WebContent/apitest.jsp
 BitcampClient/WebContent/image/noImg.png
 BitcampClient/WebContent/WEB-INF/web.xml
 BitcampClient/WebContent/static/apitest.js
+BitcampServer/.classpath
+BitcampServer/.project
+BitcampServer/.settings/org.eclipse.jdt.core.prefs
+BitcampServer/.settings/org.eclipse.m2e.core.prefs
+BitcampServer/.settings/org.eclipse.wst.common.component
+BitcampServer/.settings/org.eclipse.wst.common.project.facet.core.xml
+BitcampServer/.settings/org.eclipse.wst.validation.prefs
+BitcampServer/.settings/org.springframework.ide.eclipse.beans.core.prefs
+BitcampServer/.settings/org.springframework.ide.eclipse.core.prefs
