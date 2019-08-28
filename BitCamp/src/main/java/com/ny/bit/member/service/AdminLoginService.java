@@ -1,6 +1,7 @@
 package com.ny.bit.member.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class AdminLoginService {
 		
 		if(admin != null && admin.matchPW(pw)) {
 			loginChk = true;
-			request.getSession(true).setAttribute("adminInfo", admin.toLoginAdmin());
+			HttpSession session = request.getSession(true);
+			session.setAttribute("adminInfo", admin.toLoginAdmin());
 		}
 		
 		System.out.println("---login service---");

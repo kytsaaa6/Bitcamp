@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%-- <% LoginUser user = (LoginUser) request.getSession().getAttribute("loginInfo"); %> --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -241,7 +242,7 @@
 		</div>
 
 	</section>
-	<!-- /Section: about -->
+	<!-- /Section: login -->
 
 
 	<!-- Section: join -->

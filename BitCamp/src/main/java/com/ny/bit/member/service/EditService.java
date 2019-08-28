@@ -16,11 +16,18 @@ public class EditService {
 	private SqlSessionTemplate template;
 	private MemberDao dao;
 	
-	public User getOne(int id) {
+	public User getOne(int idx) {
 		
 		dao = template.getMapper(MemberDao.class);
-		User user = dao.selectByIdx(id);
+		User user = dao.selectByIdx(idx);
 
+		return user;
+	}
+	public User getOne(String id) {
+		
+		dao = template.getMapper(MemberDao.class);
+		User user = dao.selectById(id);
+		
 		return user;
 	}
 	

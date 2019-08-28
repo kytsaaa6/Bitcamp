@@ -7,34 +7,34 @@ $(document).ready(function() {
 	list();
 
 	// id check
-	$('#id').focusout(function() {
-		// ajax id전송 사용유무에 대한 결과 값 반환
-		$.ajax({
-			url : 'http://localhost:8080/mc/join/idcheck2', /*
-															 * jsp를 사용하지 않고 바로
-															 * 연결
-															 */
-			method : 'get',
-			data : {
-				id : $(this).val()
-			},
-			success : function(data) {
-				$(this).closest('h5').html('');
-				$('#idcheck +h5').removeClass('color_red');
-				$('#idcheck +h5').removeClass('color_blue');
-
-				if (data == 'Y') {
-					$('#idcheck').prop('checked', true);
-					$('#idcheck +h5').html('사용가능한 멋진 아이디!');
-					$('#idcheck +h5').addClass('color_blue');
-				} else {
-					$('#idcheck').prop('checked', false);
-					$('#idcheck +h5').html('사용중인 아이디이거나 탈퇴한 회원입니다.');
-					$('#idcheck +h5').addClass('color_red');
-				}
-			}
-		});
-	});
+//	$('#id').focusout(function() {
+//		// ajax id전송 사용유무에 대한 결과 값 반환
+//		$.ajax({
+//			url : 'http://localhost:8080/mc/join/idcheck2', /*
+//															 * jsp를 사용하지 않고 바로
+//															 * 연결
+//															 */
+//			method : 'get',
+//			data : {
+//				id : $(this).val()
+//			},
+//			success : function(data) {
+//				$(this).closest('h5').html('');
+//				$('#idcheck +h5').removeClass('color_red');
+//				$('#idcheck +h5').removeClass('color_blue');
+//
+//				if (data == 'Y') {
+//					$('#idcheck').prop('checked', true);
+//					$('#idcheck +h5').html('사용가능한 멋진 아이디!');
+//					$('#idcheck +h5').addClass('color_blue');
+//				} else {
+//					$('#idcheck').prop('checked', false);
+//					$('#idcheck +h5').html('사용중인 아이디이거나 탈퇴한 회원입니다.');
+//					$('#idcheck +h5').addClass('color_red');
+//				}
+//			}
+//		});
+//	});
 });
 
 function join() {
@@ -65,8 +65,13 @@ function join() {
 			alert('에러,,,');
 			alert(JSON.stringify(data));
 		},
-		complete : function() {
+		complete : function(data) {
+			console.log(data);
 			list();
+			$('#id').val('');
+			$('#pw').val('');
+			$('#name').val('');
+			$('#phone').val('');
 		}
 	});
 }
@@ -85,16 +90,20 @@ function login() {
 		}),
 		contentType : 'application/json;charset=utf-8',
 		success : function(data) {
-			if (data == 'OK') {
-				alert('OK');
-				location.replace("welcome.jsp");
-			} else if (data == 'yet') {
-				alert('yet');
+			if (data == 'yet') {
+				alert(data);
 			} else if (data == 'out') {
-				alert('out');
+				alert(data);
 			} else if (data == 'fail') {
-				alert('fail');
-			}
+				alert(data);
+			} else if (data != null) {
+				alert(data);
+				sessionStorage.setItem("loginId", data);
+				var n = sessionStorage.getItem("loginId");
+				console.log(n);
+				console.log(typeof n);
+				location.replace("welcome.jsp");
+			} 
 		},
 		error : function(data) {
 			alert('errrrrrrrrror data: ' + data);
@@ -272,7 +281,7 @@ function showAdmin() {
 
 
 function loginAdmin() {
-	
+	//loginAdminId
 	$.ajax({
 		url : 'http://localhost:8080/bitcamp/rest-admin/login',
 		type : 'POST',
@@ -282,11 +291,19 @@ function loginAdmin() {
 		}),
 		contentType : 'application/json;charset=utf-8',
 		success : function(data) {
-			if (data == 'OK') {
-				alert('OK');
-				location.replace("welcome_admin.jsp");
-			} else if (data == 'NO') {
+			if (data == 'NO') {
 				alert('fail');
+			} else if(data != null) {
+				alert(data);
+				sessionStorage.setItem("loginAdminId", data);
+				var n = sessionStorage.getItem("loginAdminId");
+				console.log(n);
+				console.log(typeof n);
+//				localStorage.setItem("loginAdminId", data);
+//				var n = localStorage.getItem("loginAdminId");
+//				console.log(n);
+//				console.log(typeof n);
+				location.href = 'http://15.164.100.85:8080/booking/rest/booking?s='+n;
 			}
 		},
 		error : function(data) {
@@ -298,7 +315,14 @@ function loginAdmin() {
 		}
 	});
 }
-
+function toReserve() {
+	$.ajax({
+		url:'',
+		type : 'GET',
+		
+			
+	});
+}
 
 function showMemberLogin() {
 	$('#loginForm').css('display', 'block');
@@ -310,8 +334,8 @@ function showMemberLogin() {
 function showAdminLogin() {
 	$('#loginAdForm').css('display', 'block');
 	$('#loginForm').css('display', 'none');
-	$("#showAdminLogin").addClass("btn-skin");
-	$("#loginAdBtn").removeClass("btn-skin");
+	$("#loginAdBtn").addClass("btn-skin");
+	$("#loginMemBtn").removeClass("btn-skin");
 }
 
 

@@ -11,11 +11,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<script>
-	var id = sessionStorage.getItem("loginId");
-	alert('id: '+id);
-</script>
- 
 <title>Welcome to BITCAMP</title>
 
 <!-- css -->
@@ -43,6 +38,10 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
+
+<%-- 
+<%= (LoginUser)request.getSession().getAttribute("loginInfo") %> --%>
 
 	<!-- Navigation -->
 	<div id="navigation">
@@ -168,6 +167,68 @@
 	</section>
 	<!-- /Section: intro -->
 
+
+<!-- Section: myinfo -->
+  <section id="myinfo" class="home-section color-dark bg-gray">
+    <div class="container marginbot-50">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+            <div class="section-heading text-center">
+              <h2 class="h-bold">My info</h2>
+              <div class="divider-header"></div>
+              <p>Check your Info when registered or revised</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+        <div class="container">
+            <div class="row col-md-6 col-md-offset-3">
+                <div class="">
+                    <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                        <!--mem-->
+                        <!-- 원래 서비스용,,, -->
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <span class="fa fa-cogs fa-5x"></span>
+                            </div>
+
+                            <form class="contactForm marginbot-40">
+                                <div class="form-group">
+                                    ID
+                                    <span class="form-control" id="id"></span>
+                                </div>
+                                <div class="form-group">
+                                    name
+                                    <span class="form-control" id="name"></span>
+                                </div>
+                                <div class="form-group">
+                                    phone
+                                    <span class="form-control" id="phone"></span>
+                                </div>
+                                <div class="form-group">
+                                    regdate
+                                    <span class="form-control" id="regdate"></span>
+                                </div>
+                                
+                            </form>
+
+                            <div class="service-desc">
+                                <!--여기에 idx 넣어서 보내준다!-->
+                                <a class="btn btn-skin" id="btn-edit">want to edit info</a>
+                                <a class="btn btn-skin" id="btn-out">want to sign out</a>
+                            </div>
+                        </div><!--mem / servicebox-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+<!-- /Section: myinfo -->
 
 
 

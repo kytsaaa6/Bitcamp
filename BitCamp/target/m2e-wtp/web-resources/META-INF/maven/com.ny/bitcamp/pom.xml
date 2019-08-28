@@ -170,6 +170,15 @@
 		    <version>2.9.9.2</version>
 		</dependency>		
 		
+		<!-- jackson-mapper-asl -->
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+				
+		
+		
 		<!-- 메일 설정 시작 --> 
 		<!-- javax.mail/mail -->
 		<dependency>

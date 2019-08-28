@@ -2,6 +2,7 @@ package com.ny.bit.member.service;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,16 @@ public class LoginService {
 			} else if(user.getVerify() == 'Y') {
 				//인증O
 				loginChk = 3;
-				request.getSession(true).setAttribute("loginInfo", user.toLoginUser());
+				HttpSession session = request.getSession(true);
+				session.setAttribute("loginInfo", user.toLoginUser());
+				System.out.println("service: 세션확인::" +user.toLoginUser());
+				System.out.println(session);
+				System.out.println(session.getAttribute("loginInfo"));
 			}
 		}
-		System.out.println("---login service---");
-		System.out.println("user" + user);
-		System.out.println("loginchk" + loginChk);
+//		System.out.println("---login service---");
+//		System.out.println("user" + user);
+//		System.out.println("loginchk" + loginChk);
 		
 		return loginChk;
 	}

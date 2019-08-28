@@ -3,6 +3,7 @@ package com.ny.bit.member.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ny.bit.member.model.EditUser;
 import com.ny.bit.member.model.JoinUser;
 import com.ny.bit.member.model.LoginReqUser;
+import com.ny.bit.member.model.LoginUser;
 import com.ny.bit.member.model.User;
 import com.ny.bit.member.service.DeleteService;
 import com.ny.bit.member.service.EditService;
@@ -82,6 +85,35 @@ public class RestUserController {
 		User user = editService.getOne(idx);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
+
+	//User 정보 가져오기: session에서 불러올 때
+	@CrossOrigin
+	@GetMapping(value = "/session" )
+	public ResponseEntity<User> getUser(@RequestParam("id")String id){
+		System.out.println(id);
+		User user = editService.getOne(id);
+//		response.setContentType("application/json");
+//		response.setCharacterEncoding("UTF-8");
+//		LoginUser loginuser = editService.getOne(id).toLoginUser();
+		System.out.println(user);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	
+//	//User 정보 가져오기: session에서 불러올 때
+//	@CrossOrigin
+//	@GetMapping(value = "/session/{id:.+}" , produces = "application/json")
+////	@RequestMapping(value = "/session/{id:.+}")
+////	@ResponseBody
+//	public ResponseEntity<String> getUser(@PathVariable("id") String id, HttpServletResponse response){
+//		System.out.println(id);
+//		User user = editService.getOne(id);
+//		response.setContentType("application/json");
+//		response.setCharacterEncoding("UTF-8");
+////		LoginUser loginuser = editService.getOne(id).toLoginUser();
+//		System.out.println(user);
+//		return new ResponseEntity<String>(user.toString(), HttpStatus.OK);
+//	}
 	
 	@CrossOrigin
 	@PutMapping("/{idx}")
@@ -128,10 +160,14 @@ public class RestUserController {
 				result = "yet";
 				break;
 			case 3:
-				result = "OK";
+				result = id;
 				break;
 		}
 		System.out.println("cont result / login:   " + result + loginChek);
+		
+		/*session check*/
+		HttpSession session = request.getSession();
+		System.out.println("session check: " + session.getAttribute("loginInfo"));
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}

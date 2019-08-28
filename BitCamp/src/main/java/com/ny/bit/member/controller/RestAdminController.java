@@ -34,8 +34,9 @@ public class RestAdminController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> loginAdmin(@RequestBody LoginReqAdmin admin, HttpServletRequest request){
+		
 		boolean result = AdLoginService.login(admin.getId(), admin.getPw(), request);
-		return new ResponseEntity<String>(result ? "OK" : "NO", HttpStatus.OK);
+		return new ResponseEntity<String>(result ? admin.getId() : "NO", HttpStatus.OK);
 	}
 	
 	//logout

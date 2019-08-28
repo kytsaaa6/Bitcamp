@@ -68,6 +68,8 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean> 	
+	
+	
 	<context:component-scan base-package="com.ny.bit" />
 	
 	
