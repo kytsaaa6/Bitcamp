@@ -18,3 +18,13 @@
 #mEditForm {
 	display: none;
 }
+
+
+/* 예약폼 */
+#mybooking thead>tr>th {
+    vertical-align: middle;
+}
+
+#mybooking {
+    font-size: 12px;
+}

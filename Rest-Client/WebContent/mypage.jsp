@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Welcome to BITCAMP</title>
+<title>My page:: BITCAMP</title>
 
 <!-- css -->
 <link href="static/css/bootstrap.min.css" rel="stylesheet"
@@ -67,11 +67,11 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="#intro">Home</a></li>
-								<li><a href="#">Book</a></li>
-								<li><a href="#">Review</a></li>
-								<li><a href="mypage.jsp">mypage</a></li>
-								<li><a onclick="logout()">Logout</a></li>
+                                <li class="active"><a href="welcome.jsp">Home</a></li>
+                                <li><a href="#myinfo">my info</a></li>
+                                <li><a href="#mybooking">my booking</a></li>
+                                <li><a href="#myinfo">Review</a></li>
+                                <li><a onclick="logout()">Logout</a></li>
 							</ul>
 						</div>
 						<!-- /.Navbar-collapse -->
@@ -230,6 +230,162 @@
   </section>
 <!-- /Section: myinfo -->
 
+
+
+    <!-- Section: mybooking -->
+    <section id="mybooking" class="home-section nopadd-bot color-dark bg-white text-center">
+        <div class="container marginbot-50">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+                        <div class="section-heading text-center">
+                            <h2 class="h-bold">My booking</h2>
+                            <div class="divider-header"></div>
+                            <p>Check your Info when registered or revised</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <div class="container">
+                <!--table,,,-->
+                <div class="row marginbot-80">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>no</th>
+                                    <th>hotel</th>
+                                    <th>address</th>
+                                    <th>room</th>
+                                    <th>check in</th>
+                                    <th>check out</th>
+                                    <th>date</th>
+                                    <th>price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>111</td>
+                                    <td>제주신라호텔</td>
+                                    <td>중문관광로72번길 75, 서귀포, 대한민국</td>
+                                    <td>디럭스 룸</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-26 14:27:53</td>
+                                    <td>&#36;200,000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        222224444
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>222</td>
+                                    <td>코스테이</td>
+                                    <td>서울특별시 강서구 곰달래로 247</td>
+                                    <td>디럭스 룸</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-26 14:45:30</td>
+                                    <td>&#36;200,000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        222224444
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>333</td>
+                                    <td>제주신라호텔</td>
+                                    <td>중문관광로72번길 75, 서귀포, 대한민국</td>
+                                    <td>디럭스 룸</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-27</td>
+                                    <td>2019-08-26 14:45:34</td>
+                                    <td>&#36;200,000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        222224444
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                       
+                        <!-- api 용 테스트 테이블 여행리스트--> 
+                        <table class="table table-hover" id="apitourtable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>stationName</th>
+                                    <th>mangName</th>
+                                    <th>pm10Value</th>
+                                    <th>미세먼지</th>
+                                    <th>pm25Value</th>
+                                    <th>초미세먼지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                       <!-- api 용 테스트 테이블 전체리스트 --> 
+                        <table class="table table-hover" id="apitable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>stationName</th>
+                                    <th>mangName</th>
+                                    <th>pm10Value</th>
+                                    <th>미세먼지</th>
+                                    <th>pm25Value</th>
+                                    <th>초미세먼지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+
+
+                <!---->
+                <div class="row col-md-6 col-md-offset-3">
+                    <div class="">
+                        <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                            <!--mem-->
+                            <!-- 원래 서비스용,,, -->
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <span class="fa fa-cogs fa-5x"></span>
+                                </div>
+
+                                <form class="contactForm marginbot-40">
+                                    <div class="form-group">
+                                        ID
+                                        <span class="form-control" id="id"></span>
+                                    </div>
+
+                                </form>
+
+                                <div class="service-desc">
+                                    <!--여기에 idx 넣어서 보내준다!-->
+                                    <a class="btn btn-skin" id="btn-edit">want to edit info</a>
+                                    <a class="btn btn-skin" id="btn-out">want to sign out</a>
+                                </div>
+                            </div>
+                            <!--mem / servicebox-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Section: mybooking -->
 
 
 

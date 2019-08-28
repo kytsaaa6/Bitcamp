@@ -177,7 +177,21 @@
 		    <version>1.9.13</version>
 		</dependency>
 				
+		<!-- 공공 API 이용을 위해 추가  -->
+		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-core -->
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-core</artifactId>
+		    <version>3.2.5</version>
+		</dependency>
 		
+		<!-- java code result to json object : google  -->
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
 		
 		<!-- 메일 설정 시작 --> 
 		<!-- javax.mail/mail -->
