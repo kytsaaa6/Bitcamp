@@ -34,7 +34,8 @@ public class RestClientController {
 	@CrossOrigin
 	public List<User> getAllList(){
 		RestTemplate templete = new RestTemplate();
-		User[] users = templete.getForObject("http://localhost:8080/bitcamp/rest-users", User[].class);
+//		User[] users = templete.getForObject("http://localhost:8080/bitcamp/rest-users", User[].class);
+		User[] users = templete.getForObject("http://13.209.40.5:8080/bitcamp/rest-users", User[].class);
 		
 		List<User> userlist = Arrays.asList(users);
 		
@@ -51,7 +52,8 @@ public class RestClientController {
 	public User getJoin(@RequestBody JoinUser joinuser) {
 		RestTemplate templete = new RestTemplate();
 		User user = 
-				templete.postForObject("http://localhost:8080/bitcamp/rest-users", joinuser, User.class);
+//				templete.postForObject("http://localhost:8080/bitcamp/rest-users", joinuser, User.class);
+				templete.postForObject("http://13.209.40.5:8080/bitcamp/rest-users", joinuser, User.class);
 		System.out.println("rc_ join test:::user:::" + user);		
 //				templete.postForLocation("http://localhost:8080/bitcamp/rest/users", JoinUser.class);
 				/*templete.postForObject("http://localhost:8080/bitcamp/rest/users", new User(), User.class);*/

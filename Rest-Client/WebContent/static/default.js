@@ -40,7 +40,8 @@ $(document).ready(function() {
 function join() {
 	/* var formData = $('.contactForm').serializeObject(); */
 	$.ajax({
-		url : 'http://localhost:8080/rc/join', // restful 어렵,,,ㅠㅠㅠㅠ
+//		url : 'http://localhost:8080/rc/join', // restful 어렵,,,ㅠㅠㅠㅠ
+		url : 'http://13.209.40.5:8080/rc/join', // restful 어렵,,,ㅠㅠㅠㅠ
 		// url:'http://localhost:8080/bitcamp/rest-users',
 		type : 'POST',
 		data : JSON.stringify({
@@ -82,7 +83,8 @@ function join() {
 function login() {
 	
 	$.ajax({
-		url : 'http://localhost:8080/bitcamp/rest-users/login',
+//		url : 'http://localhost:8080/bitcamp/rest-users/login',
+		url : 'http://13.209.40.5:8080/bitcamp/rest-users/login',
 		type : 'POST',
 		data : JSON.stringify({
 			id : $('#lid').val(),
@@ -120,7 +122,8 @@ function list() {
 	$.ajax({
 		/* url:'http://localhost:8080/mc/rest/members', */
 		// restful로 우회접근
-		url : 'http://localhost:8080/rc/list',
+//		url : 'http://localhost:8080/rc/list',
+		url : 'http://13.209.40.5:8080/rc/list',
 		type : 'GET',
 		success : function(data) {
 			/* alert(JSON.stringify(data)); */
@@ -151,7 +154,8 @@ function list() {
 function del(idx) {
 	if (confirm('delete??????')) {
 		$.ajax({
-			url : 'http://localhost:8080/bitcamp/rest-users/' + idx + '/del',
+//			url : 'http://localhost:8080/bitcamp/rest-users/' + idx + '/del',
+			url : 'http://13.209.40.5:8080/bitcamp/rest-users/' + idx + '/del',
 			type : 'PUT',
 			success : function(data) {
 
@@ -176,7 +180,8 @@ function edit(idx) {
 		// data를 받아오는 타이밍이 달라져서 먼저 선언하고 넣어줘야 한다.
 		$('#mEditForm').css('display', 'block');
 		$.ajax({
-			url : 'http://localhost:8080/bitcamp/rest-users/' + idx,
+//			url : 'http://localhost:8080/bitcamp/rest-users/' + idx,
+			url : 'http://13.209.40.5:8080/bitcamp/rest-users/' + idx,
 			type : 'GET',
 			success : function(data) {
 				// alert(data.idx);
@@ -197,7 +202,8 @@ $('#editform').submit(function() {
 	var idx = $('#idx2').val();
 
 	$.ajax({
-		url : 'http://localhost:8080/bitcamp/rest-users/' + idx,
+//		url : 'http://localhost:8080/bitcamp/rest-users/' + idx,
+		url : 'http://13.209.40.5:8080/bitcamp/rest-users/' + idx,
 		type : 'PUT',
 		data : JSON.stringify({
 			idx : idx,
@@ -283,7 +289,8 @@ function showAdmin() {
 function loginAdmin() {
 	//loginAdminId
 	$.ajax({
-		url : 'http://localhost:8080/bitcamp/rest-admin/login',
+//		url : 'http://localhost:8080/bitcamp/rest-admin/login',
+		url : 'http://13.209.40.5:8080/bitcamp/rest-admin/login',
 		type : 'POST',
 		data : JSON.stringify({
 			id : $('#laid').val(),
@@ -303,7 +310,7 @@ function loginAdmin() {
 //				var n = localStorage.getItem("loginAdminId");
 //				console.log(n);
 //				console.log(typeof n);
-				location.href = 'http://15.164.100.85:8080/booking/rest/booking?s='+n;
+				location.href = 'http://13.125.249.209:8080/adminclient?s='+n;
 			}
 		},
 		error : function(data) {

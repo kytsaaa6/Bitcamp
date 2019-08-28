@@ -8,7 +8,8 @@ $(document).ready(function() {
 
 function logout() {
 	$.ajax({
-		url: 'http://localhost:8080/bitcamp/rest-users/login',
+//		url: 'http://localhost:8080/bitcamp/rest-users/login',
+		url: 'http://13.209.40.5:8080/bitcamp/rest-users/login',
 		type: 'GET',
 		success:function(data) {
 			alert(data);
@@ -21,7 +22,8 @@ function logout() {
 
 function logoutAdmin() {
 	$.ajax({
-		url: 'http://localhost:8080/bitcamp/rest-admin/login',
+//		url: 'http://localhost:8080/bitcamp/rest-admin/login',
+		url: 'http://13.209.40.5:8080/bitcamp/rest-admin/login',
 		type: 'GET',
 		success:function(data) {
 //			alert(data);
@@ -38,8 +40,9 @@ function myinfo() {
 	console.log(id);
 //	alert(id);
 	$.ajax({
-//		url: 'http://localhost:8080/bitcamp/rest-users/session/'+ id,
-		url: 'http://localhost:8080/bitcamp/rest-users/session?id='+ id,
+//		url: 'http://localhost:8080/bitcamp/rest-users/session/'+ id, 이거로는 406에러 뜸 ㅠ
+//		url: 'http://localhost:8080/bitcamp/rest-users/session?id='+ id,
+		url: 'http://13.209.40.5:8080/bitcamp/rest-users/session?id='+ id,
 		type:'GET',
 		contentType : 'application/json;charset=utf-8',
 		success:function(data) {

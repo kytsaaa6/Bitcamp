@@ -41,7 +41,7 @@ public class MailService {
 			msg.setSubject("[BITCAMP] 본인 인증 메일",	"utf-8");
 			
 			String body = "BITCAMP 본인 인증 확인 메일입니다. 인증하기를 원하시면 아래의 인증하기 버튼을 눌러주세요<br>\n";
-			body += "<a href=\"http://localhost:8080/bitcamp/verify?id="+id+"&code="+code+"\">인증하기 클릭</a>";
+			body += "<a href=\"http://13.209.40.5:8080/bitcamp/verify?id="+id+"&code="+code+"\">인증하기 클릭</a>";
 			
 			msg.setText(body, "utf-8", "html");
 			msg.addRecipient(RecipientType.TO, new InternetAddress(id,name,"utf-8"));
