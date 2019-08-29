@@ -35,6 +35,7 @@ $(document).ready(function() {
 //			}
 //		});
 //	});
+	
 });
 
 function join() {
@@ -73,6 +74,7 @@ function join() {
 			$('#phone').val('');
 		}
 	});
+	return false;
 }
 
 
@@ -98,14 +100,16 @@ function login() {
 				console.log(data);
 			} else if (data != null) {
 				console.log(data);
-				sessionStorage.setItem("loginId", data);
-				var n = sessionStorage.getItem("loginId");
+				sessionStorage.setItem("loginIdx", data);
+				var n = sessionStorage.getItem("loginIdx");
 				console.log(n);
 				console.log(typeof n);
 //				location.replace("welcome.jsp");
 				
 				//user넘기는데 일단 미니미니꺼로 테스트!!
-				location.replace("http://13.125.249.209:8080/adminclient/info?uIdx="+data);
+//				location.replace("http://13.125.249.209:8080/adminclient/index.jsp?uIdx="+data);
+//				location.href = 'http://13.125.249.209:8080/adminclient/index.jsp?uIdx='+data;
+				location.replace("http://13.209.40.5:8080/client/info.jsp?uIdx="+data);
 			} 
 		},
 		error : function(data) {
@@ -118,22 +122,23 @@ function login() {
 	});
 }
 
-
-//넘겨야할 것들,,, 받는 쪽에서 만들어야 할 메서드 제작(일단 샘플 미니미니꺼로)
-function getUserIdx(){
-	$.ajax({
-		url:'http://13.125.249.209:8080/adminclient/info',
-		type: 'GET',
-		success: function(uIdx){
-			sessionStorage.setItem("userIdx", uIdx);
-			console.log(uIdx);
-		},
-		error: function(e){
-			console.log(e);
-		}
-		
-	});
-}
+//
+////넘겨야할 것들,,, 받는 쪽에서 만들어야 할 메서드 제작(일단 샘플 미니미니꺼로)
+//function getUserIdx(){
+//	$.ajax({
+////		url:'http://13.125.249.209:8080/adminclient/index.jsp',
+//		url:'http://13.209.40.5:8080/client/info.jsp',
+//		type: 'GET',
+//		success: function(uIdx){
+//			sessionStorage.setItem("userIdx", uIdx);
+//			console.log(uIdx);
+//		},
+//		error: function(e){
+//			console.log(e);
+//		}
+//		
+//	});
+//}
 
 
 
@@ -323,8 +328,8 @@ function loginAdmin() {
 				alert('fail');
 			} else if(data != null) {
 				console.log(data);
-				sessionStorage.setItem("loginAdminId", data);
-				var n = sessionStorage.getItem("loginAdminId");
+				sessionStorage.setItem("loginAdminIdx", data);
+				var n = sessionStorage.getItem("loginAdminIdx");
 //				console.log(n);
 //				console.log(typeof n);
 				
@@ -347,13 +352,6 @@ function loginAdmin() {
 	});
 }
 
-
-function toReserve() {
-	$.ajax({
-		url:'',
-		type : 'GET',
-	});
-}
 
 function showMemberLogin() {
 	$('#loginForm').css('display', 'block');

@@ -16,8 +16,8 @@ function logout() {
 		type: 'GET',
 		success:function(data) {
 			alert(data);
-			sessionStorage.removeItem("loginId");
-			localStorage.removeItem("loginId");
+			sessionStorage.removeItem("loginIdx");
+			localStorage.removeItem("loginIdx");
 			location.href = "index.jsp";
 		}
 	});
@@ -31,15 +31,15 @@ function logoutAdmin() {
 		success:function(data) {
 //			alert(data);
 //			console.log(id);
-			sessionStorage.removeItem("loginAdminId");
-			localStorage.removeItem("loginAdminId");
+			sessionStorage.removeItem("loginAdminIdx");
+			localStorage.removeItem("loginAdminIdx");
 			location.href = "index.jsp";
 		}
 	});
 }
 
 function myinfo() {
-	var idx = sessionStorage.getItem("loginId");
+	var idx = sessionStorage.getItem("loginIdx");
 	console.log(idx);
 //	alert(id);
 	$.ajax({

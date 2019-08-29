@@ -12,8 +12,8 @@
 <meta name="author" content="">
 
 <script>
-	var id = sessionStorage.getItem("loginId");
-	alert('id: '+id);
+	var id = sessionStorage.getItem("userIdx");
+	alert('idx: '+id);
 </script>
  
 <title>Welcome to BITCAMP</title>
