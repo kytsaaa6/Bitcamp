@@ -20,17 +20,6 @@
 		<result property="out"  column="out"/>
 	</resultMap>
 	
-
-	<resultMap id="Admin" type="com.ny.bit.member.model.Admin">
-		<result property="idx" column="idx_a"/>
-		<result property="id" column="id"/>
-		<result property="pw" column="pw"/>
-		<result property="name" column="name"/>
-		<result property="regdate" column="regdate" javaType="java.util.Date"/>
-	</resultMap>
-	
-	
-	
 	<select id="selectById" resultMap="User" >
 		select * from bitcamp.mem where id = #{id}
 	</select>
@@ -71,7 +60,5 @@
 	</update>
 	
 	
-	<select id="selectAdById" resultMap="Admin">
-		select * from bitcamp.admin where id = #{id}	
-	</select>	
+	
 </mapper>

@@ -55,19 +55,17 @@ function join() {
 		success : function(data) {
 			// if(data > 0) {
 			if (data = 'success') {
-				alert('성~~~공');
+				console.log('성~~~공');
 				// } else {
 			} else if (data = 'fail') {
-				alert('실~~~패');
-				alert(JSON.stringify(data));
+				console.log('실~~~패');
 			}
 		},
 		error : function(data) {
-			alert('에러,,,');
-			alert(JSON.stringify(data));
+			console.log('에러,,,');
+			console.log(JSON.stringify(data));
 		},
 		complete : function(data) {
-			console.log(data);
 			list();
 			$('#id').val('');
 			$('#pw').val('');
@@ -93,13 +91,13 @@ function login() {
 		contentType : 'application/json;charset=utf-8',
 		success : function(data) {
 			if (data == 'yet') {
-				alert(data);
+				console.log(data);
 			} else if (data == 'out') {
-				alert(data);
+				console.log(data);
 			} else if (data == 'fail') {
-				alert(data);
+				console.log(data);
 			} else if (data != null) {
-				alert(data);
+				console.log(data);
 				sessionStorage.setItem("loginId", data);
 				var n = sessionStorage.getItem("loginId");
 				console.log(n);
@@ -108,7 +106,7 @@ function login() {
 			} 
 		},
 		error : function(data) {
-			alert('errrrrrrrrror data: ' + data);
+			console.log('errrrrrrrrror data: ' + data);
 		},
 		complete: function() {
 			$('#lid').val(''),
@@ -162,11 +160,11 @@ function del(idx) {
 				if (data == 'success') {
 					alert('삭제되었습니다');
 				} else {
-					alert('실-패');
+					console.log('실-패');
 				}
 			},
 			error : function() {
-				alert('error ㅠㅠㅠㅠ');
+				console.log('error ㅠㅠㅠㅠ');
 			},
 			complete : function() {
 				list();
@@ -253,37 +251,39 @@ function showAdmin() {
 /*                       A D M I N                     */
 /*-----------------------------------------------------*/
 
-//function joinAd() {
-//$.ajax({
-//	url:'http://localhost:8080/bitcamp/rest-admin',
-//	type : 'POST',
-//	data : JSON.stringify({
-//		id : $('.contactForm #id').val(),
-//		pw : $('.contactForm #pw').val(),
-//		name : $('.contactForm #name').val(),
-//		phone : $('.contactForm #phone').val()
-//	}),
-//	contentType : 'application/json;charset=utf-8',
-//	dataType : 'json',
-//	success : function(data) {
-//		// if(data > 0) {
-//		if (data = 'success') {
-//			alert('성~~~공');
-//			// } else {
-//		} else if (data = 'fail') {
-//			alert('실~~~패');
-//			alert(JSON.stringify(data));
-//		}
-//	},
-//	error : function(data) {
-//		alert('에러,,,');
-//		alert(JSON.stringify(data));
-//	},
-//	complete : function() {
-//		list();
-//	}
-//});
-//}
+function joinAd() {
+	$.ajax({
+//		url:'http://localhost:8080/bitcamp/rest-admin',
+		url:'http://13.209.40.5:8080/bitcamp/rest-admin',
+		type : 'POST',
+		data : JSON.stringify({
+			id : $('#adminForm #id').val(),
+			pw : $('#adminForm #pw').val(),
+			name : $('#adminForm #name').val()
+		}),
+		contentType : 'application/json;charset=utf-8',
+		dataType : 'json',
+		success : function(data) {
+			// if(data > 0) {
+			if (data > 0) {
+				alert('관리자 가입 완료');
+				// } else {
+			} else if (data = 'fail') {
+				alert('실~~~패');
+				console.log(JSON.stringify(data));
+			}
+		},
+		error : function(data) {
+			alert('에러,,,');
+			alert(JSON.stringify(data));
+		},
+		complete : function() {
+			$('#adminForm #id').val(''),
+			$('#adminForm #pw').val(''),
+			$('#adminForm #name').val('')
+		}
+	});
+}
 
 
 function loginAdmin() {
@@ -291,7 +291,7 @@ function loginAdmin() {
 	$.ajax({
 //		url : 'http://localhost:8080/bitcamp/rest-admin/login',
 		url : 'http://13.209.40.5:8080/bitcamp/rest-admin/login',
-		type : 'POST',
+		type : 'put',
 		data : JSON.stringify({
 			id : $('#laid').val(),
 			pw : $('#lapw').val()
@@ -301,16 +301,19 @@ function loginAdmin() {
 			if (data == 'NO') {
 				alert('fail');
 			} else if(data != null) {
-				alert(data);
+				console.log(data);
 				sessionStorage.setItem("loginAdminId", data);
 				var n = sessionStorage.getItem("loginAdminId");
-				console.log(n);
-				console.log(typeof n);
-//				localStorage.setItem("loginAdminId", data);
-//				var n = localStorage.getItem("loginAdminId");
 //				console.log(n);
 //				console.log(typeof n);
-				location.href = 'http://13.125.249.209:8080/adminclient?s='+n;
+				
+				
+				
+				//민희한테 넘길 url
+//				location.href = 'http://13.125.249.209:8080/adminclient?s='+n;
+
+				/*일단 임시로 내 url로 이동시킴*/
+				location.href = 'http://13.209.40.5:8080/client/welcome_admin.jsp';
 			}
 		},
 		error : function(data) {
@@ -322,12 +325,12 @@ function loginAdmin() {
 		}
 	});
 }
+
+
 function toReserve() {
 	$.ajax({
 		url:'',
 		type : 'GET',
-		
-			
 	});
 }
 

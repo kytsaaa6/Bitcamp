@@ -28,6 +28,7 @@ public class Admin {
 	
 	
 	public Admin() {
+		this.regdate = new Date();
 	}
 	public Admin(String id, String pw, String name) {
 		this.id = id;

@@ -27,6 +27,4 @@ public interface MemberDao {
 	
 	public int updateVerify(String id, String code); //이메일인증verify 처리
 	
-	/*-------- admin --------*/
-	public Admin selectAdById(String id);
 }
