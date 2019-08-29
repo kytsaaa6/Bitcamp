@@ -1,5 +1,13 @@
 package com.bitcamp.kym.booking.domain;
 
+
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BookingInfo {
 
 	private int idx;
@@ -8,8 +16,12 @@ public class BookingInfo {
 	private String h_address;
 	private String r_name;
 	private String r_price;
-	private String s_date;
-	private String e_date;
+//	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date s_date;
+//	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date e_date;
 	private String b_date;
 	private String uId;
 	
@@ -18,8 +30,7 @@ public class BookingInfo {
 	}
 
 	public BookingInfo(int idx, String h_name, String h_photo, String h_address, String r_name, String r_price,
-			String s_date, String e_date, String uId) {
-		super();
+			Date s_date, Date e_date, String uId) {
 		this.idx = idx;
 		this.h_name = h_name;
 		this.h_photo = h_photo;
@@ -92,25 +103,21 @@ public class BookingInfo {
 	}
 
 
-	public String getS_date() {
+	public Date getS_date() {
 		return s_date;
 	}
 
-
-	public void setS_date(String s_date) {
+	public void setS_date(Date s_date) {
 		this.s_date = s_date;
 	}
 
-
-	public String getE_date() {
+	public Date getE_date() {
 		return e_date;
 	}
 
-
-	public void setE_date(String e_date) {
+	public void setE_date(Date e_date) {
 		this.e_date = e_date;
 	}
-
 
 	public String getB_date() {
 		return b_date;

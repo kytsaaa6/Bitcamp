@@ -61,6 +61,7 @@ public class BookingRestFulController {
 	public ResponseEntity<String> insertBooking(RequestBooking request) {
 		
 		int cnt = insertService.Insert(request);
+		System.out.println(request);
 		
 		return new ResponseEntity<String>(cnt>0 ? "success":"fail", HttpStatus.OK);
 	}

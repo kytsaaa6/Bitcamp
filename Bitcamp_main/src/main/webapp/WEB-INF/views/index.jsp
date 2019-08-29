@@ -37,30 +37,49 @@
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 
 <!-- booking Form CSS -->
-<%-- <link href="${pageContext.request.contextPath}/static/css/booking.css" rel="stylesheet" type="text/css" > --%>
+<link href="${pageContext.request.contextPath}/static/css/booking.css" rel="stylesheet" type="text/css" >
 
 <!-- Hotel CSS -->
 <link href="${pageContext.request.contextPath}/static/css/hotel.css" rel="stylesheet" >
 
  <!-- datepicker -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  -->
  <!--  kakao api -->
-<!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
 
 <style>
+#mu {
+	width: 1000px;
+	height: 500px;
+	border: 1px solid #ddd;
+	margin-left: 60px;
+	border-radius: 50px;
+}
 
+.muin {
+
+}
+
+#h_name2 {
+}
+#r_name2 {
+
+}
+#r_price2 {
+	text-
+}
 	
 </style>
-<style>
+<!-- <style>
 /*datepicer 버튼 롤오버 시 손가락 모양 표시*/
 .ui-datepicker-trigger{cursor: pointer;}
 /*datepicer input 롤오버 시 손가락 모양 표시*/
 .hasDatepicker{cursor: pointer;}
-</style>
+</style> -->
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -267,96 +286,53 @@
 
 
   <!-- Section: 예약 페이지-->
-  <section id="sectionReserv" class="home-section color-dark bg-gray">
-    <div class="container marginbot-50">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
-            <div class="section-heading text-center">
-              <h2 class="h-bold">예약진행</h2>
-              <div class="divider-header"></div>
-              <p>Lorem ipsum dolor sit amet, agam perfecto sensibus usu at duo ut iriure.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="text-center">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="wow fadeInLeft" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-cogs fa-5x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5>Web Design</h5>
-                  <p>
-                    Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
-                  </p>
-                  <a href="#" class="btn btn-skin">Learn more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-camera fa-5x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5>Photography</h5>
-                  <p>
-                    Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
-                  </p>
-                  <a href="#" class="btn btn-skin">Learn more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-laptop fa-5x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5>Graphic design</h5>
-                  <p>
-                    Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
-                  </p>
-                  <a href="#" class="btn btn-skin">Learn more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="wow fadeInRight" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-mobile-phone fa-5x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5>Mobile apps</h5>
-                  <p>
-                    Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
-                  </p>
-                  <a href="#" class="btn btn-skin">Learn more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <section id="sectionReserv" class="home-section color-dark bg-white">
+ <div class="container" id="container">
+   <!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; margin-bottom: -20px; margin-right: 30px; background-image: url(/kym/img/payment_medium.png);"></a> -->
+   	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
+   	<form method="post" id="bForm">
+   		<h5 id="h_img_s" style="overflow:hidden"></h5>
+   		<div id="h_info">
+   			<h4>호텔 정보</h4>
+   			<img src="" name="h_photo" id="h_photo">
+   			<div id="ho">
+   			<h5><input name="h_name" id="h_name" readonly></h5>
+   			<h6><input name="h_address" id="h_address" readonly></h6>
+   			</div>
+   		</div>
+   		<!-- 방 리스트 출력  -->
+   		<div id="date">
+   			
+ 			<h4>체크인</h4>
+ 			<h5><input type="text" id="datepicker" name="s_date"></h5>
+  		<h4>체크아웃</h4>
+  		<h5><input type="text" id="datepicker2" name="e_date"></h5>
+ 		</div>
+   		<div id="r_info">
+   			<h4>룸 정보</h4>
+   			<h5><input name="r_name" id="r_name" readonly></h5>
+   			<h4>룸 가격</h4>
+   			<h5><input name="r_price" id="r_price" readonly></h5>
+   		</div>
+   		<h6 id="chkMsg"></h6>
+   		<div id="u_info">
+   			<h5 style="color: black; font-size:30px;"><input name="uId" id="uId" value="kytsaaa" style="background-color: #F5F4F1; width:150px;"readonly> 님이 선택하신 예약 정보 입니다.</h5>
+   			<!-- <input name="b_date" id="b_date"> -->
+   		</div>
+   		
+   		<div id="button">
+   			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" >무통장 입금</button>
+   			<a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a>
+			<!-- <input type="submit" class="btn btn-outline-primary btn-lg" value="무통장입금"> -->
+   			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; border-radius: 10px;">이전</button>
+   			
+   		</div>
+   	</form>
+   
+   </div>
+ </section> 
+    
   <!-- /Section: 예약 페이지-->
-
 
 
   <!-- Section: 결제 페이지 -->
@@ -366,7 +342,7 @@
         <div class="col-lg-8 col-lg-offset-2">
           <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
-              <h2 class="h-bold">결제</h2>
+              <h2 class="h-bold">결제 진행</h2>
               <div class="divider-header"></div>
               <p>Lorem ipsum dolor sit amet, agam perfecto sensibus usu at duo ut iriure.</p>
             </div>
@@ -380,16 +356,38 @@
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="wow bounceInUp" data-wow-delay="0.4s">
-            <div id="owl-works" class="owl-carousel">
-              <div class="item"><a href="img/works/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg"><img src="img/works/1.jpg" class="img-responsive" alt="img"></a></div>
-              <div class="item"><a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/2@2x.jpg"><img src="img/works/2.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/3@2x.jpg"><img src="img/works/3.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/4@2x.jpg"><img src="img/works/4.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/5@2x.jpg"><img src="img/works/5.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/6@2x.jpg"><img src="img/works/6.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/7.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/7@2x.jpg"><img src="img/works/7.jpg" class="img-responsive " alt="img"></a></div>
-              <div class="item"><a href="img/works/8.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/8@2x.jpg"><img src="img/works/8.jpg" class="img-responsive " alt="img"></a></div>
-            </div>
+			<h5 id="h_img_s2" style="overflow:hidden"></h5>
+			<h5 id="h_address2" style="overflow:hidden"></h5>
+			<h5 id="s_date2" style="overflow:hidden"></h5>
+			<h5 id="e_date2" style="overflow:hidden"></h5>
+			<h5 id="uId2" style="overflow:hidden"></h5>
+              <div id="mu">
+              <table>
+              
+              	<tr>
+              		<td>호텔명</td>
+              		<td><h4 id="h_name2" class="muin"></h4></td>
+              	</tr>
+              	<tr>
+              		<td>룸명</td>
+              		<td><h4 id="r_name2" class="muin"></h4></td>
+              	</tr>
+              	<tr>
+              		<td>결제예정 금액</td>
+              		<td><h4 id="r_price2" class="muin"></h4></td>
+              	</tr>
+          		<tr>
+              		<th colspan="2"><h4 id="number" class="muin"> 신한 111-1111-1111 비트캠프 </h4>
+              		<h4 id="number" class="muin"> 24시간 이내에 입금 해주시기 바랍니다. <br>시간내에 입금 하지 않으면 자동적으로 예약이 취소 됩니다. </h4>
+              	</th>
+              	</tr>
+              	<tr>
+              		<td><button id="mupay" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 입금 확인</button></td>
+              		<td><button id="cancel" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 예약 취소</button></td>
+              	</tr>
+              	</table>
+              </div>
+
           </div>
         </div>
       </div>
@@ -444,6 +442,31 @@
     </div>
   </section>
   <!-- /Section: 예약 완료 페이지  -->
+
+  <!-- Footer 시작 -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+          <div class="text-center">
+            <a href="#sectionHotel" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
+            <p>&copy; Bitcamp - Where Change Begins </p>
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Shuffle
+              -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer END -->
 	
 	
 	<!-- 용민 : 룸 예약 페이지  -->
@@ -493,142 +516,7 @@
 	    </div>
 	  </section> --%>
 	
-	
-	<!-- footer -->
-	<%@ include file="/WEB-INF/views/frame/footer.jsp" %>
-    <!-- End of footer -->
 
-
-<script>
-
-$(document).ready(function() {
-	
-    $(function() {
-        //모든 datepicker에 대한 공통 옵션 설정
-        $.datepicker.setDefaults({
-            dateFormat: 'yy-mm-dd' //Input Display Format 변경
-            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
-            ,changeYear: true //콤보박스에서 년 선택 가능
-            ,changeMonth: true //콤보박스에서 월 선택 가능                
-            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-            ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-            ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
-            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
-            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
-            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
-            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-            ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-            ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
-        });
-
-        //input을 datepicker로 선언
-        $("#datepicker").datepicker();                    
-        $("#datepicker2").datepicker();
-        
-        //From의 초기값을 오늘 날짜로 설정
-        $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-        //To의 초기값을 내일로 설정
-        $('#datepicker2').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-    });
-    
-    
-    
-    
-    $('#datepicker2').change(function() {
-    	
-   		r_price();
-   		available();
-    });
-    
-    
-    function r_price()
-    {
-        var sdd = document.getElementById("datepicker").value;
-        var edd = document.getElementById("datepicker2").value;
-        var ar1 = sdd.split('-');
-        var ar2 = edd.split('-');
-        var dat1 = new Date(ar1[0], ar1[1], ar1[2]);
-        var dat2 = new Date(ar2[0], ar2[1], ar2[2]);
-        
-  		// 날짜 차이 알아 내기
-        var diff = dat2 - dat1;
-        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
-        var currMonth = currDay * 30;// 월 만듬
-        var currYear = currMonth * 12; // 년 만듬
-
-        var ddif = parseInt(diff/currDay);
-        var mdif = parseInt(diff/currMonth);
-        var ydif = parseInt(diff/currYear);
-        
-        var totalP = parseInt(diff/currDay) * $('#r_price').val();
-        $('#r_price').val(totalP);
-        
-/*         
-        document.write("* 날짜 두개 : " + sdd + ", " + edd + "<br/>");
-        document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
-        document.write("* 월수 차이 : " + parseInt(diff/currMonth) + " 월<br/>");
-        document.write("* 년수 차이 : " + parseInt(diff/currYear) + " 년<br/><br/>"); */
-     
-    }
-        
-    function available()
-    {
-    	$('#chkMsg').empty();
-    	
-        $.ajax({
-            url : 'http://localhost:8080/booking/rest/booking/aval',
-            type : 'get',
-            data : {
-                h_name : $('#h_name').val(),
-                r_name : $('#r_name').val(),
-                s_date : $('#datepicker').val(),
-                e_date : $('#datepicker2').val()
-            },
-            success : function(data){
-                alert(data);
-                if(data=='success') {
-                	$('#chkMsg').append('지정 하신 날짜에는 모든 방이 소진되었습니다. 다른 날짜를 선택해주세요.').css('color', 'red');
-                }
-                else {
-                	$('#chkMsg').append('예약 가능한 날짜입니다.').css('color', 'blue');
-                }
-            },
-    		error : function(e) {
-    			alert(e);
-    		}
-        });
-    }
-    
-    
-    $('#kakaopay-btn').on(function() {
-    	
-    	kakaopay(e);
-    	
-    });
-    
-/*     
-   	function kakaopay(e) {
-   		e.preventDefault();
-   		
-   		$.ajax({ */
-   			/* url: 'http://15.164.100.85:8080/booking/rest/kakaoPay', */
-/*    			url: 'http://localhost:8080/booking/rest/kakaoPay',
-   			type : 'GET',
-   			data : {
-   				hotel: $('').val;
-   				checkIn: $()
-   				
-   			}
-   			
-   			
-   			
-   		});
-   	}  */
-});
-</script>
 
 
 

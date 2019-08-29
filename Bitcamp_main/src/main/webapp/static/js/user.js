@@ -3,7 +3,7 @@ $(document).ready(function(){
 	hotelList(1); //최초 리스트 출력 : default pageNo=1
 	hotelDetailPage(); //호텔상세보기
 	hotelRoomList();
-	
+		
 });
 
 //호텔리스트
@@ -223,7 +223,7 @@ function resvAction(contentid, roomnum) {
 	//alert(contentid);
 	//alert(roomnum);
 	location.href='#sectionReserv'; //예약 진행 스크롤로 이동 
-	$('#roomListModal').modal('hide'); //이동과 함께 모달 숨기기
+//	$('#roomListModal').modal('hide'); //이동과 함께 모달 숨기기
 	
 	$.ajax({
 		//url : 'http://localhost:8080/ad/api/hotel/room/'+contentid+'/'+roomnum,
@@ -247,24 +247,8 @@ function resvAction(contentid, roomnum) {
 			 $('#r_name').val(data.roomname);
 			 $('#r_price').val(data.price);
 			 
-//			 $('#h_address').val(data.hotelname);
-//			 h_address
-//			 r_name
-//			 r_price
-//			 uId
-//			 datepicker
-//			 datepicker2
-			//Room 에서 받아올 수 있는 정보들 표시 
-//			alert('성공!' + data.roomnum);
-//			alert('성공!' + data.hotelnum);
-//			alert('성공!' + data.hotelname);
-//			alert('성공!' + data.roomname);
-//			alert('성공!' + data.roomimg);
-//			alert('성공!' + data.maxppl);
-//			alert('성공!' + data.intro);
-//			alert('성공!' + data.price);
-//			alert('성공!' + data.convenience);
-//			alert('성공!' + data.availability);
+			 resvAction2(contentid);
+
 		},
 		error : function(e) {
 			alert(e);
@@ -272,6 +256,208 @@ function resvAction(contentid, roomnum) {
 
 	})
 	
+	
+	//호텔 상세보기 01
+function resvAction2(contentid) {
+	
+	location.href='#sectionReserv'; //예약 진행 스크롤로 이동 
+		
+		//alert('상세보기 01 '+contentid);
+	
+		$.ajax({
+			//url: 'http://localhost:8080/ad/api/hotel/'+contentid,
+			url: 'http://13.125.249.209:8080/admin/api/hotel/'+contentid,
+			type: 'get',
+			dataType: 'json',
+			success: function(data) {
+				
+				//alert('상세보기 06  ');
+				var item = data.response.body.items.item;
+				
+				var addr1 = item.addr1;
+				var addr2 = item.addr2;
+				var firstimage = item.firstimage;
+				var overview = item.overview;
+				var tel = item.tel;
+				var telname = item.telname;
+				var title = item.title;
+				var zipcode = item.zipcode;
+				
+				$('#h_address').val(addr1);
+				$("#h_img").attr("src", firstimage);
+				$('#h_img_s').val(firstimage);
+
+//				<img src="'+firstimage+'" class="card-img-top" width="100%" height="300px" >
+			}
+		})
+		
+	
+}
+	
+	$('#mumu').click(function() {
+		
+		location.href='#sectionPayment';
+		
+		var img_src = $('#h_img').attr("src");
+		
+		 $('#h_name2').append($('#h_name').val());
+		 $('#h_img2').attr('src', img_src);
+		 $('#h_img_s2').append($('#h_img_s').val());
+		 $('#h_address2').append($('#h_address').val());
+		 $('#r_name2').append($('#r_name').val());
+		 $('#r_price2').append($('#r_price').val());
+		 $('#s_date2').append($('#datepicker').val());
+		 $('#e_date2').append($('#datepicker2').val());
+		 $('#uId2').append($('#uId').val());
+		
+	})
+	
+	$('#mupay').click(function() {
+		payChk();
+	})
+	
+	
+//	입금 확인 클릭 시 -- 예약현황 추가
+	function payChk()
+    {
+		location.href='#sectionConfirm';
+    	
+        $.ajax({
+            url : 'http://localhost:8080/booking/rest/booking',
+            type : 'post',
+            data : {
+                h_name : $('#h_name2').val(),
+                h_photo : $('#h_img_s2').val(),
+                h_address : $('#h_address2').val(),
+                r_name : $('#r_name2').val(),
+                r_price : $('#r_price2').val(),
+                s_date : $('#s_date2').val(),
+                e_date : $('#e_date2').val(),
+                uId : $('#uId2').val()
+                
+            },
+            
+            success : function(data){
+            	
+                if(data=='success') {
+                	alert('예약이 완료되었습니다.');
+//                	$('#chkMsg').append('지정 하신 날짜에는 모든 방이 소진되었습니다. 다른 날짜를 선택해주세요.').css('color', 'red');
+                }
+                else {
+                	alert('예약 실패');
+//                	$('#chkMsg').append('예약 가능한 날짜입니다.').css('color', 'blue');
+                }
+            },
+    		error : function(e) {
+    			alert(e);
+    		}
+        })
+    }
+	
+	
+	
+    $(function() {
+        //모든 datepicker에 대한 공통 옵션 설정
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd' //Input Display Format 변경
+            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+            ,changeYear: true //콤보박스에서 년 선택 가능
+            ,changeMonth: true //콤보박스에서 월 선택 가능                
+            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+            ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+            ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+            ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+            ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+        })
+        //input을 datepicker로 선언
+        $("#datepicker").datepicker();                    
+        $("#datepicker2").datepicker();
+        
+        //From의 초기값을 오늘 날짜로 설정
+        $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+        //To의 초기값을 내일로 설정
+        $('#datepicker2').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+    
+    
+    
+    
+    $('#datepicker2').change(function() {
+    	
+   		r_price();
+   		available();
+    });
+    
+    
+    function r_price()
+    {
+        var sdd = document.getElementById("datepicker").value;
+        var edd = document.getElementById("datepicker2").value;
+        var ar1 = sdd.split('-');
+        var ar2 = edd.split('-');
+        var dat1 = new Date(ar1[0], ar1[1], ar1[2]);
+        var dat2 = new Date(ar2[0], ar2[1], ar2[2]);
+        
+  		// 날짜 차이 알아 내기
+        var diff = dat2 - dat1;
+        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+        var currMonth = currDay * 30;// 월 만듬
+        var currYear = currMonth * 12; // 년 만듬
+        var ddif = parseInt(diff/currDay);
+        var mdif = parseInt(diff/currMonth);
+        var ydif = parseInt(diff/currYear);
+        
+        var totalP = parseInt(diff/currDay) * $('#r_price').val();
+        $('#r_price').val(totalP);
+        
+/*         
+        document.write("* 날짜 두개 : " + sdd + ", " + edd + "<br/>");
+        document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
+        document.write("* 월수 차이 : " + parseInt(diff/currMonth) + " 월<br/>");
+        document.write("* 년수 차이 : " + parseInt(diff/currYear) + " 년<br/><br/>"); */
+     
+    }
+        
+    function available()
+    {
+    	$('#chkMsg').empty();
+    	
+        $.ajax({
+            url : 'http://localhost:8080/booking/rest/booking/aval',
+            type : 'get',
+            data : {
+                h_name : $('#h_name').val(),
+                r_name : $('#r_name').val(),
+                s_date : $('#datepicker').val(),
+                e_date : $('#datepicker2').val()
+            },
+            success : function(data){
+                if(data=='success') {
+                	$('#chkMsg').append('지정 하신 날짜에는 모든 방이 소진되었습니다. 다른 날짜를 선택해주세요.').css('color', 'red');
+                }
+                else {
+                	$('#chkMsg').append('예약 가능한 날짜입니다.').css('color', 'blue');
+                }
+            },
+    		error : function(e) {
+    			alert(e);
+    		}
+        })
+    }
+    
+    
+    $('#kakaopay-btn').on(function() {
+    	
+    	kakaopay(e);
+    	
+    })
 
 	
 }
