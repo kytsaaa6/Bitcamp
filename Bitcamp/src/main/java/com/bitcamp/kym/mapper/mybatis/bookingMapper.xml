@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 는 필수 속성이다. : dao 식별하기위한 이름 -->
+<mapper namespace="com.bitcamp.kym.booking.dao.BookingDaoInterface">
+
+	<!-- select 결과 메핑을 위한 resultMap 설정 -->
+	<resultMap id="resultBookingInfo"
+		type="com.bitcamp.kym.booking.domain.BookingInfo">
+		<id property="idx" column="IDX" />
+		<result property="h_name" column="H_NAME" />
+		<result property="h_photo" column="H_PHOTO" />
+		<result property="h_address" column="H_ADDRESS" />
+		<result property="r_name" column="R_NAME" />
+		<result property="r_price" column="R_PRICE" />
+		<result property="s_date" column="START_DATE" />
+		<result property="e_date" column="END_DATE" />
+		<result property="b_date" column="BOOKING_DATE" />
+		<result property="uId" column="uId" />
+	</resultMap>
+	
+	<!-- select 결과 메핑을 위한 resultMap 설정 -->
+	<resultMap id="resultChk"
+		type="com.bitcamp.kym.booking.domain.AvailableBooking">
+		<result property="h_name" column="H_NAME" />
+		<result property="r_name" column="R_NAME" />
+		<result property="s_date" column="START_DATE" />
+		<result property="e_date" column="END_DATE" />
+	</resultMap>
+	
+
+
+	<insert id="insertBooking" parameterType="com.bitcamp.kym.booking.domain.BookingInfo">
+		insert into booking (h_name, h_photo, h_address, r_name, r_price, START_DATE, END_DATE, BOOKING_DATE, uId)
+		values (#{h_name}, #{h_photo}, #{h_address}, #{r_name}, #{r_price}, #{s_date}, #{e_date}, now(), #{uId})
+	
+	</insert>
+	
+	<select id="selectBookingByIdx" resultMap="resultBookingInfo">
+		select * from booking where idx=#{idx}
+	</select>
+	
+	<update id="updateBooking" parameterType="com.bitcamp.kym.booking.domain.BookingInfo">
+		update booking set start_date=#{s_date}, end_date=#{e_date} where idx=#{idx}
+	</update>
+	
+	<delete id="deleteBooking">
+		delete from booking where idx=#{idx}
+	</delete>
+	
+	<select id="bookingList" resultMap="resultBookingInfo">
+		select * from booking order by start_date
+	</select>
+	
+	<select id="availableBooking" resultType="int" parameterType="com.bitcamp.kym.booking.domain.AvailableBooking">
+		select count(*)
+		from booking
+		where h_name=#{h_name} and r_name=#{r_name} 
+		and
+		((#{s_date} between start_date and end_date)
+		or (#{e_date} between start_date and end_date))
+		
+		
+	</select>
+
+</mapper>
