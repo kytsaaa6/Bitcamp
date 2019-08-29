@@ -115,6 +115,8 @@ public class RestUserController {
 //		return new ResponseEntity<String>(user.toString(), HttpStatus.OK);
 //	}
 	
+	
+	//user 수정
 	@CrossOrigin
 	@PutMapping("/{idx}")
 	public ResponseEntity<String> updateUser(@PathVariable("idx") int idx, @RequestBody EditUser user){
@@ -133,14 +135,17 @@ public class RestUserController {
 	
 	//login
 	@CrossOrigin
-	@RequestMapping(value = "/login" , method = RequestMethod.POST)
-	@ResponseBody
+	@PostMapping(value = "/login")
 	public ResponseEntity<String> loginUser(@RequestBody LoginReqUser user ,
 			/* @RequestParam("id")String id, @RequestParam("pw") String pw, */ 
 									HttpServletRequest request) {
 		String result = "";
 		String id = user.getId();
 		String pw = user.getPw();
+		
+		System.out.println("--controller id ---" + id);
+		System.out.println("--controller pw ---" + pw);
+		
 		int loginChek = loginService.login(id, pw, request);
 		switch (loginChek) {
 		/* result : 
@@ -160,7 +165,12 @@ public class RestUserController {
 				result = "yet";
 				break;
 			case 3:
-				result = id;
+				//idx 가져오기
+				int idx = editService.getOne(id).getIdx();
+
+//				result = id;
+				result = String.valueOf(idx);
+				System.out.println("--controller result ---" + result);
 				break;
 		}
 		System.out.println("cont result / login:   " + result + loginChek);
@@ -171,11 +181,56 @@ public class RestUserController {
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
+//	//login 이전버전,,, string + id로
+//	@CrossOrigin
+//	@RequestMapping(value = "/login" , method = RequestMethod.POST)
+//	@ResponseBody
+//	public ResponseEntity<String> loginUser(@RequestBody LoginReqUser user ,
+//			/* @RequestParam("id")String id, @RequestParam("pw") String pw, */ 
+//			HttpServletRequest request) {
+//		String result = "";
+//		String id = user.getId();
+//		String pw = user.getPw();
+//		int loginChek = loginService.login(id, pw, request);
+//		switch (loginChek) {
+//		/* result : 
+//		 * 0 : id pw 틀림
+//		 * 1 : 탈퇴한 회원
+//		 * 2 : 이메일 미인증
+//		 * 3 : 인증까지 완료 
+//		 * */
+//		
+//		case 0:
+//			result = "fail";
+//			break;
+//		case 1:
+//			result = "out";
+//			break;
+//		case 2:
+//			result = "yet";
+//			break;
+//		case 3:
+//			//idx 가져오기
+//			int idx = editService.getOne(id).getIdx();
+//			
+////				result = id;
+//			result = String.valueOf(idx);
+//			
+//			break;
+//		}
+//		System.out.println("cont result / login:   " + result + loginChek);
+//		
+//		/*session check*/
+//		HttpSession session = request.getSession();
+//		System.out.println("session check: " + session.getAttribute("loginInfo"));
+//		
+//		return new ResponseEntity<String>(result, HttpStatus.OK);
+//	}
 	
 	
 	//logout
 	@CrossOrigin
-	@GetMapping("/login")
+	@GetMapping("/logout")
 	public ResponseEntity<String> logoutUser(HttpSession session){
 		session.invalidate();
 		return new ResponseEntity<String>("OK",HttpStatus.OK);

@@ -12,7 +12,7 @@ $(document).ready(function() {
 function logout() {
 	$.ajax({
 //		url: 'http://localhost:8080/bitcamp/rest-users/login',
-		url: 'http://13.209.40.5:8080/bitcamp/rest-users/login',
+		url: 'http://13.209.40.5:8080/bitcamp/rest-users/logout',
 		type: 'GET',
 		success:function(data) {
 			alert(data);
@@ -30,7 +30,7 @@ function logoutAdmin() {
 		type: 'GET',
 		success:function(data) {
 //			alert(data);
-			console.log(id);
+//			console.log(id);
 			sessionStorage.removeItem("loginAdminId");
 			localStorage.removeItem("loginAdminId");
 			location.href = "index.jsp";
@@ -39,20 +39,20 @@ function logoutAdmin() {
 }
 
 function myinfo() {
-	var id = sessionStorage.getItem("loginId");
-	console.log(id);
+	var idx = sessionStorage.getItem("loginId");
+	console.log(idx);
 //	alert(id);
 	$.ajax({
 //		url: 'http://localhost:8080/bitcamp/rest-users/session/'+ id, 이거로는 406에러 뜸 ㅠ
 //		url: 'http://localhost:8080/bitcamp/rest-users/session?id='+ id,
-		url: 'http://13.209.40.5:8080/bitcamp/rest-users/session?id='+ id,
+		url: 'http://13.209.40.5:8080/bitcamp/rest-users/'+ idx,
 		type:'GET',
 		contentType : 'application/json;charset=utf-8',
 		success:function(data) {
 //			alert('data: '+data);
 //			alert('name '+data.name);
 			
-			$('#id').html(id);
+			$('#id').html(data.id);
 			$('#name').html(data.name);
 			$('#phone').html(data.phone);
 			$('#regdate').html(data.regdate);

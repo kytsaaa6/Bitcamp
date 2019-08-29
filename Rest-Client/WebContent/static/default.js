@@ -83,7 +83,7 @@ function login() {
 	$.ajax({
 //		url : 'http://localhost:8080/bitcamp/rest-users/login',
 		url : 'http://13.209.40.5:8080/bitcamp/rest-users/login',
-		type : 'POST',
+		type : 'post',
 		data : JSON.stringify({
 			id : $('#lid').val(),
 			pw : $('#lpw').val()
@@ -102,7 +102,10 @@ function login() {
 				var n = sessionStorage.getItem("loginId");
 				console.log(n);
 				console.log(typeof n);
-				location.replace("welcome.jsp");
+//				location.replace("welcome.jsp");
+				
+				//user넘기는데 일단 미니미니꺼로 테스트!!
+				location.replace("http://13.125.249.209:8080/adminclient/info?uIdx="+data);
 			} 
 		},
 		error : function(data) {
@@ -114,7 +117,25 @@ function login() {
 		}
 	});
 }
-//});
+
+
+//넘겨야할 것들,,, 받는 쪽에서 만들어야 할 메서드 제작(일단 샘플 미니미니꺼로)
+function getUserIdx(){
+	$.ajax({
+		url:'http://13.125.249.209:8080/adminclient/info',
+		type: 'GET',
+		success: function(uIdx){
+			sessionStorage.setItem("userIdx", uIdx);
+			console.log(uIdx);
+		},
+		error: function(e){
+			console.log(e);
+		}
+		
+	});
+}
+
+
 
 function list() {
 	$.ajax({

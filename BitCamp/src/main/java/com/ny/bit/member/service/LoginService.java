@@ -25,9 +25,11 @@ public class LoginService {
 		User user = null;
 		
 		user = dao.selectById(id);
-//		System.out.println("selectbyId login" + user);
-//		System.out.println(user.matchPW(pw));
-//		System.out.println(!pw.isEmpty());
+		
+		System.out.println("---login service---");
+		System.out.println("selectbyId login" + user);
+		System.out.println(user.matchPW(pw));
+		System.out.println(!pw.isEmpty());
 		
 		if(user != null && user.matchPW(pw)) {
 			//현재X			
