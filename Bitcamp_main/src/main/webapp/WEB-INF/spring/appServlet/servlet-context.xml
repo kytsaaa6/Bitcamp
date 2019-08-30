@@ -25,8 +25,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	
-<!-- 	<beans:bean id="dataSource"
+<!-- 	
+ 	<beans:bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="com.mysql.cj.jdbc.Driver"
 		p:url="jdbc:mysql://localhost:3306/project?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
@@ -60,18 +60,18 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 
 	</beans:bean> -->
-
-	<!-- PlatformTransactionManager 빈 설정 -->
+<!-- 
+	PlatformTransactionManager 빈 설정
 	
 	
-	<!-- @Transactional 애노테이션 활성화 설정 -->
-<!-- 	<beans:bean id="transactionManager"
+	@Transactional 애노테이션 활성화 설정
+	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource">
 	</beans:bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<tx:annotation-driven transaction-manager="transactionManager" />  -->
 	
-	
+	 
 	<context:component-scan base-package="com.bitcamp.rest" />
 	
 	

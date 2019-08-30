@@ -20,4 +20,6 @@ public interface BookingDaoInterface {
 	public List<BookingInfo> bookingList();
 
 	public int availableBooking(AvailableBooking chk);
+	
+	public BookingInfo successBooking(String h_name, String r_name, String uId);
 }

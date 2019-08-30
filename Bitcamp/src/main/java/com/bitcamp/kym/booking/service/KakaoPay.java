@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.bitcamp.kym.booking.domain.KakaoPayApprovalVO;
 import com.bitcamp.kym.booking.domain.KakaoPayReadyVO;
+import com.bitcamp.kym.booking.domain.RequestBooking;
 
 @Service("kakoPayService")
 public class KakaoPay {
@@ -23,16 +24,15 @@ public class KakaoPay {
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
     
-    public String kakaoPayReady() {
+    public String kakaoPayReady(RequestBooking request) {
  
         RestTemplate restTemplate = new RestTemplate();
         String test = "";
  
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK" + "fc648f75d8c0b939dc1c86f2e062de9f");
+        headers.add("Authorization", "KakaoAK" + " fc648f75d8c0b939dc1c86f2e062de9f");
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-//        headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+";charset=UTF-8");
         
         
@@ -54,8 +54,6 @@ public class KakaoPay {
  
         try {
             kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
-
-//            log.info("" + kakaoPayReady);
             
             return kakaoPayReadyVO.getNext_redirect_pc_url();
 

@@ -14,7 +14,6 @@ public class KakaoPayReadyVO {
     }
     
 	public KakaoPayReadyVO(String tid, String next_redirect_pc_url, Date created_at) {
-		super();
 		this.tid = tid;
 		this.next_redirect_pc_url = next_redirect_pc_url;
 		this.created_at = created_at;

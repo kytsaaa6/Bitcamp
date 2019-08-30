@@ -17,6 +17,7 @@ public class RequestBooking {
 //	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date s_date;
+	
 //	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date e_date;
@@ -25,6 +26,7 @@ public class RequestBooking {
 	
 	
 	public RequestBooking() {
+		
 	}
 
 	public RequestBooking(String h_name, String h_photo, String h_address, String r_name, String r_price, Date s_date,

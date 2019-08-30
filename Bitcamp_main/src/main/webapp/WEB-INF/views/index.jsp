@@ -45,7 +45,7 @@
  <!-- datepicker -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- -->
+
  <!--  kakao api -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -60,26 +60,59 @@
 	border-radius: 50px;
 }
 
-.muin {
+#bookingChk {
+	width: 800px;
+	margin-top: 30px;
+	margin-left: 70px;
+}
 
+#bookingChk td {
+	
+	font-size: 30px;
+	text-align: left;
+	padding: 20px 0;
+	padding-left: 50px;
+	border-bottom: 1px solid #ddd;
+}
+#bookingChk th {
+	
+}
+.muin {
+	
 }
 
 #h_name2 {
+
 }
 #r_name2 {
 
 }
 #r_price2 {
-	text-
+}
+
+.ib {
+	font-size: 26px;
+	color: red;
+	text-align: center;
+	padding-top: 10px;
+}
+	
+#mupay {
+	margin-left: 250px;
+}	
+
+#kakaopay-btn {
+	margin-left: 80px;
+	width: 200px;
 }
 	
 </style>
-<!-- <style>
+<style>
 /*datepicer 버튼 롤오버 시 손가락 모양 표시*/
 .ui-datepicker-trigger{cursor: pointer;}
 /*datepicer input 롤오버 시 손가락 모양 표시*/
 .hasDatepicker{cursor: pointer;}
-</style> -->
+</style>
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -132,7 +165,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <div class="item active">
-          <img src="img/slide1.jpg" alt="First slide">
+          <img src="<c:url value="/resources/img/slide1.jpg" />" alt="First slide">
           <!-- Static Header -->
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
@@ -147,7 +180,7 @@
           <!-- /header-text -->
         </div>
         <div class="item">
-          <img src="img/slide2.jpg" alt="Second slide">
+          <img src="<c:url value="/resources/img/slide2.jpg" />" alt="Second slide">
           <!-- Static Header -->
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
@@ -162,7 +195,7 @@
           <!-- /header-text -->
         </div>
         <div class="item">
-          <img src="img/slide3.jpg" alt="Third slide">
+          <img src="<c:url value="/resources/img/slide3.jpg" />" alt="Third slide">
           <!-- Static Header -->
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
@@ -288,13 +321,12 @@
   <!-- Section: 예약 페이지-->
  <section id="sectionReserv" class="home-section color-dark bg-white">
  <div class="container" id="container">
-   <!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; margin-bottom: -20px; margin-right: 30px; background-image: url(/kym/img/payment_medium.png);"></a> -->
-   	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
-   	<form method="post" id="bForm">
-   		<h5 id="h_img_s" style="overflow:hidden"></h5>
+   	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 진행 </h1>
+   	<form id="bForm">
+   		<h5 id="h_img_s" style="display:none;"></h5>
    		<div id="h_info">
    			<h4>호텔 정보</h4>
-   			<img src="" name="h_photo" id="h_photo">
+   			<img name="h_photo" id="h_photo">
    			<div id="ho">
    			<h5><input name="h_name" id="h_name" readonly></h5>
    			<h6><input name="h_address" id="h_address" readonly></h6>
@@ -304,9 +336,9 @@
    		<div id="date">
    			
  			<h4>체크인</h4>
- 			<h5><input type="text" id="datepicker" name="s_date"></h5>
-  		<h4>체크아웃</h4>
-  		<h5><input type="text" id="datepicker2" name="e_date"></h5>
+ 				<h5><input type="text" id="datepicker" name="s_date"></h5>
+  			<h4>체크아웃</h4>
+  				<h5><input type="text" id="datepicker2" name="e_date"></h5>
  		</div>
    		<div id="r_info">
    			<h4>룸 정보</h4>
@@ -321,14 +353,19 @@
    		</div>
    		
    		<div id="button">
-   			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" >무통장 입금</button>
-   			<a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a>
+   			<!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a> -->
+			<input type="submit" id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);">
+   			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; height: 50px; border-radius: 20px; margin: 0 10px;" >무통장 입금</button>
 			<!-- <input type="submit" class="btn btn-outline-primary btn-lg" value="무통장입금"> -->
-   			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; border-radius: 10px;">이전</button>
+   			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; height: 50px; border-radius: 20px; margin-bottom: 5px; clear:both;">이전</button>
    			
    		</div>
    	</form>
-   
+   	
+<!--    			<form method="post" id="kaka">
+    			<button id="kakaopay-btn" type="submit">카카오페이로 결제하기</button>
+			</form>
+			 -->
    </div>
  </section> 
     
@@ -356,34 +393,35 @@
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="wow bounceInUp" data-wow-delay="0.4s">
-			<h5 id="h_img_s2" style="overflow:hidden"></h5>
-			<h5 id="h_address2" style="overflow:hidden"></h5>
-			<h5 id="s_date2" style="overflow:hidden"></h5>
-			<h5 id="e_date2" style="overflow:hidden"></h5>
-			<h5 id="uId2" style="overflow:hidden"></h5>
+<!-- 			
+			<h5 id="h_img_s2" style=""></h5>
+			<h5 id="h_address2"></h5>
+			<h5 id="s_date2"></h5>
+			<h5 id="e_date2"></h5>
+			<h5 id="uId2"></h5> -->
               <div id="mu">
-              <table>
-              
+              <table id="bookingChk">
               	<tr>
-              		<td>호텔명</td>
-              		<td><h4 id="h_name2" class="muin"></h4></td>
+              		<td>호텔명 : </td>
+              		<td><h4 id="h_name2" class="muin" style="color:#1CBCA3;"></h4></td>
               	</tr>
               	<tr>
-              		<td>룸명</td>
-              		<td><h4 id="r_name2" class="muin"></h4></td>
+              		<td>방이름 : </td>
+              		<td><h4 id="r_name2" class="muin" style=color:#1CBCA3;"></h4></td>
               	</tr>
               	<tr>
-              		<td>결제예정 금액</td>
-              		<td><h4 id="r_price2" class="muin"></h4></td>
+              		<td>결제예정 금액 : </td>
+              		<td><h4 id="r_price2" class="muin" style="color:#1CBCA3;"></h4></td>
               	</tr>
           		<tr>
-              		<th colspan="2"><h4 id="number" class="muin"> 신한 111-1111-1111 비트캠프 </h4>
-              		<h4 id="number" class="muin"> 24시간 이내에 입금 해주시기 바랍니다. <br>시간내에 입금 하지 않으면 자동적으로 예약이 취소 됩니다. </h4>
-              	</th>
+              		<th colspan="2"><h4 class="ib"> 신한 111-1111-1111 비트캠프 </h4>
+              		<h4 class="ib"> 24시간 이내에 입금 해주시기 바랍니다. <br>시간내에 입금 하지 않으면 자동으로 예약이 취소 됩니다. </h4>
+              		</th>
               	</tr>
               	<tr>
-              		<td><button id="mupay" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 입금 확인</button></td>
-              		<td><button id="cancel" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 예약 취소</button></td>
+              		<th colspan="2"><button id="mupay" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 입금 확인</button>
+              		<button id="cancel" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px; background-color: white; color: black;" > 예약 취소</button>
+              		</th>
               	</tr>
               	</table>
               </div>
@@ -467,59 +505,6 @@
     </div>
   </footer>
   <!-- footer END -->
-	
-	
-	<!-- 용민 : 룸 예약 페이지  -->
-<%-- 	
- 	  <section id="sectionReserv" class="home-section color-dark bg-white">
-	  		    <div class="container" id="container">
-	    <!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; margin-bottom: -20px; margin-right: 30px; background-image: url(/kym/img/payment_medium.png);"></a> -->
-	    	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
-	    	<form method="post" id="bForm">
-	    		<div id="h_info">
-	    			<h4>호텔 정보</h4>
-	    			<img src="<c:url value="/resources/img/hotel.jpg" />" name="h_photo" id="h_photo">
-	    			<div id="ho">
-	    			<h5><input name="h_name" id="h_name" value="제주 신라 호텔" readonly></h5>
-	    			<h6><input name="h_address" id="h_address" value="중문관광로72번길 75, 서귀포, 대한민국" readonly></h6>
-	    			</div>
-	    		</div>
-	    		<!-- 방 리스트 출력  -->
- 	   		<div id="date">
- 	   			
-	  			<h4>체크인</h4>
-	  			<h5><input type="text" id="datepicker" name="s_date"></h5>
-		  		<h4>체크아웃</h4>
-		  		<h5><input type="text" id="datepicker2" name="e_date"></h5>
-	  		</div>
-	    		<div id="r_info">
-	    			<h4>룸 정보</h4>
-	    			<h5><input name="r_name" id="r_name" value="디럭스 룸" readonly></h5>
-	    			<h4>룸 가격</h4>
-	    			<h5><input name="r_price" id="r_price" readonly></h5>
-	    		</div>
-	    		<h6 id="chkMsg"></h6>
-	    		<div id="u_info">
-	    			<h5 style="color: black; font-size:30px;"><input name="uId" id="uId" value="kytsaaa" style="background-color: #F5F4F1;"readonly> 님이 선택하신 예약 정보 입니다.</h5>
-	    			<!-- <input name="b_date" id="b_date"> -->
-	    		</div>
-	    		
-	    		<div id="button">
-	    			<button id="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" style="width:150px; border-radius: 10px;" >무통장 입금</button>
-	    			<a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a>
-					<!-- <input type="submit" class="btn btn-outline-primary btn-lg" value="무통장입금"> -->
-	    			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; border-radius: 10px;">이전</button>
-	    			
-	    		</div>
-	    	</form>
-	    
-	    </div>
-	  </section> --%>
-	
-
-
-
-
 
 
   <!-- Core JavaScript Files -->

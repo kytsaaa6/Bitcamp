@@ -3,7 +3,7 @@ $(document).ready(function(){
 	hotelList(1); //최초 리스트 출력 : default pageNo=1
 	hotelDetailPage(); //호텔상세보기
 	hotelRoomList();
-		
+	
 });
 
 //호텔리스트
@@ -123,6 +123,7 @@ function hotelDetailPage() {
 				//alert('상세보기 06  ');
 				var item = data.response.body.items.item;
 				
+				
 				var addr1 = item.addr1;
 				var addr2 = item.addr2;
 				var firstimage = item.firstimage;
@@ -217,7 +218,7 @@ function hotelRoomList() {
 
 
 
-/*방 페이지에서 예약 버튼 작동시*/
+/*방 페이지에서 예약 버튼 작동시 - 룸 데이터*/
 function resvAction(contentid, roomnum) {
 	//$('#roomListModal').hide();
 	//alert(contentid);
@@ -257,7 +258,7 @@ function resvAction(contentid, roomnum) {
 	})
 	
 	
-	//호텔 상세보기 01
+	/*방 페이지에서 예약 버튼 작동시 - 호텔 데이터*/
 function resvAction2(contentid) {
 	
 	location.href='#sectionReserv'; //예약 진행 스크롤로 이동 
@@ -284,8 +285,15 @@ function resvAction2(contentid) {
 				var zipcode = item.zipcode;
 				
 				$('#h_address').val(addr1);
-				$("#h_img").attr("src", firstimage);
 				$('#h_img_s').val(firstimage);
+				
+				if(firstimage==undefined) {
+					$('#h_img').attr('src', '/bitcamp/img/payment_medium.png');
+				} else {
+					$('#h_img').attr('src', firstimage);
+				}
+				
+				
 
 //				<img src="'+firstimage+'" class="card-img-top" width="100%" height="300px" >
 			}
@@ -313,6 +321,8 @@ function resvAction2(contentid) {
 	})
 	
 	$('#mupay').click(function() {
+//		console.log(payChk());
+//		alert(payChk());
 		payChk();
 	})
 	
@@ -324,36 +334,68 @@ function resvAction2(contentid) {
     	
         $.ajax({
             url : 'http://localhost:8080/booking/rest/booking',
-            type : 'post',
+            type : 'POST',
             data : {
-                h_name : $('#h_name2').val(),
-                h_photo : $('#h_img_s2').val(),
-                h_address : $('#h_address2').val(),
-                r_name : $('#r_name2').val(),
-                r_price : $('#r_price2').val(),
-                s_date : $('#s_date2').val(),
-                e_date : $('#e_date2').val(),
-                uId : $('#uId2').val()
-                
+                h_name : $('#h_name').val(),
+                h_photo : $('#h_img_s').val(),
+                h_address : $('#h_address').val(),
+                r_name : $('#r_name').val(),
+                r_price : $('#r_price').val(),
+                s_date : $('#datepicker').val(),
+                e_date : $('#datepicker2').val(),
+                uId : $('#uId').val()
             },
-            
             success : function(data){
+            	console.log(data);
             	
                 if(data=='success') {
                 	alert('예약이 완료되었습니다.');
-//                	$('#chkMsg').append('지정 하신 날짜에는 모든 방이 소진되었습니다. 다른 날짜를 선택해주세요.').css('color', 'red');
+                	paySuccess();
                 }
                 else {
-                	alert('예약 실패');
-//                	$('#chkMsg').append('예약 가능한 날짜입니다.').css('color', 'blue');
+                	alert('예약 실패하였습니다. 입력한 정보를 다시 확인해 주세요.');
                 }
             },
     		error : function(e) {
     			alert(e);
     		}
         })
+        return false;
     }
 	
+	function paySuccess()
+    {
+		 $('#h_name3').append($('#h_name').val());
+		 $('#email').append($('#r_name').val());
+		 $('#subject').append($('#r_price').val());
+		
+    }
+	
+	
+/*
+//	결제완료 시 -- 예약현황 가져오기
+	function paySuccess(h_name, r_name, uId)
+    {
+		location.href='#sectionConfirm';
+    	
+        $.ajax({
+            url : 'http://localhost:8080/booking/rest/booking/'+h_name+'/'+r_name+'/'+uId,
+			type: 'get',
+			dataType: 'json',
+			success: function(data) {
+				
+				$('#name').val(data.h_name);
+				$('#email').val(data.r_name);
+				$('#subject').val(data.r_price);
+//				$('#h_img_s').val(data.s_date);
+//				$('#h_img_s').val(data.e_date);
+//				$('#h_img_s').val(data.b_date);
+			}
+			
+			
+		})
+    }
+*/
 	
 	
     $(function() {
@@ -451,14 +493,112 @@ function resvAction2(contentid) {
     		}
         })
     }
+
+	let popup;
+	let timer;
     
+    $('#bForm').submit(function() {
+    	popup = window.open("about:blank", '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+    	
+//    		e.preventDefault();
+    	
+    		$.ajax({
+    			url : 'http://localhost:8080/booking/rest/kakaoPay',
+    			type : 'get',
+    			data : {
+    	            h_name : $('#h_name').val(),
+    	            h_photo : $('#h_img_s').val(),
+    	            h_address : $('#h_address').val(),
+    	            r_name : $('#r_name').val(),
+    	            r_price : $('#r_price').val(),
+    	            s_date : $('#datepicker').val(),
+    	            e_date : $('#datepicker2').val(),
+    	            uId : $('#uId').val()
+    			},
+    			success : function(res){
+    				console.log(res);
+    				alert(res);
+    				popup.location.href=res;
+
+    			},
+    			error: function(e) {
+    				alert(e);
+    				console.log(e);
+    			}
+    		})
+
+    	
+    	
+//    	kakaopay();
+    });
     
-    $('#kakaopay-btn').on(function() {
-    	
-    	kakaopay(e);
-    	
-    })
+
+//    	function kakaopay(){
+////    		e.preventDefault();
+//    		$.ajax({
+//    			url : 'http://localhost:8080/booking/rest/kakaoPay',
+//    			type : 'post',
+//    			data : {
+//    	            h_name : $('#h_name').val(),
+//    	            h_photo : $('#h_img_s').val(),
+//    	            h_address : $('#h_address').val(),
+//    	            r_name : $('#r_name').val(),
+//    	            r_price : $('#r_price').val(),
+//    	            s_date : $('#datepicker').val(),
+//    	            e_date : $('#datepicker2').val(),
+//    	            uId : $('#uId').val()
+//    			},
+//    			success : function(res){
+//    				console.log(res);
+//    				alert(res.next_redirect_pc_url);
+//    				res = JSON.parse(res);
+//    				console.log(res.next_redirect_pc_url);
+//    				popup = window.open(res.next_redirect_pc_url, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+////    				timer = setInterval(function(){
+////    					if(popup.closed){
+////    						location.href="http://10.10.10.178:8080/hotel/mypage.to?nickname=${sessionScope.nick}"
+////    					}
+////    				}, 1000);
+//    			}
+//    		})
+//    	}
 
 	
+	
+	
+////입금 확인 클릭 시 -- 예약현황 추가
+//function payChk()
+//{
+//	location.href='#sectionConfirm';
+//	
+//    $.ajax({
+//        url : 'http://localhost:8080/booking/rest/booking',
+//        type : 'POST',
+//        data : {
+//            h_name : $('#h_name').val(),
+//            h_photo : $('#h_img_s2').val(),
+//            h_address : $('#h_address').val(),
+//            r_name : $('#r_name').val(),
+//            r_price : $('#r_price').val(),
+//            s_date : $('#datepicker').val(),
+//            e_date : $('#datepicker2').val(),
+//            uId : $('#uId').val()
+//        },
+//        success : function(data){
+//        	console.log(data);
+//        	
+//            if(data=='success') {
+//            	alert('예약이 완료되었습니다.');
+//            	paySuccess();
+//            }
+//            else {
+//            	alert('예약 실패하였습니다. 입력한 정보를 다시 확인해 주세요.');
+//            }
+//        },
+//		error : function(e) {
+//			alert(e);
+//		}
+//    })
+//    return false;
+//}
 }
-

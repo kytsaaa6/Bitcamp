@@ -5,32 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.kym.booking.dao.BookingDaoInterface;
+import com.bitcamp.kym.booking.domain.AvailableBooking;
 import com.bitcamp.kym.booking.domain.BookingInfo;
-import com.bitcamp.kym.booking.domain.RequestBooking;
 
+@Service("successService")
+public class BookingSuccessService {
 
-@Service("insertService")
-public class BookingInsertService {
-
-	
 	private BookingDaoInterface dao;
 	
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	
-	public int Insert(RequestBooking booking) {
+	public BookingInfo getSuccess(String h_name, String r_name, String uId) {
 		
 		dao = template.getMapper(BookingDaoInterface.class);
 		
-		BookingInfo bookingInfo = booking.toBookingInfo();
-		
-		booking.getS_date();
-		
-		
-		int rCnt = dao.insertBooking(bookingInfo);
-		
-		return rCnt;
+		return dao.successBooking(h_name,r_name,uId);
 	}
-
 }

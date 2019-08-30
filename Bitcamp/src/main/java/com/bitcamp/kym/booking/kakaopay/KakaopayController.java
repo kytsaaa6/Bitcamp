@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.bitcamp.kym.booking.domain.RequestBooking;
 import com.bitcamp.kym.booking.service.KakaoPay;
 
 @Controller
@@ -15,17 +17,17 @@ public class KakaopayController {
 	@Autowired
     private KakaoPay kakaopay;
     
-    
+//    
+//    @GetMapping("/rest/kakaoPay")
+//    public void kakaoPayGet() {
+//        
+//    }
+//    
     @GetMapping("/rest/kakaoPay")
-    public void kakaoPayGet() {
-        
-    }
-    
-    @PostMapping("/rest/kakaoPay")
-    public String kakaoPay() {
+    public String kakaoPay(RequestBooking request) {
         System.out.println("kakaoPay post............................................");
-        System.out.println(kakaopay.kakaoPayReady());
-        return "redirect:" + kakaopay.kakaoPayReady();
+        System.out.println(request);
+        return kakaopay.kakaoPayReady(request);
  
     }
   

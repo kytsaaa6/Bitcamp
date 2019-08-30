@@ -23,6 +23,7 @@ import com.bitcamp.kym.booking.service.BookingAvailableService;
 import com.bitcamp.kym.booking.service.BookingDeleteService;
 import com.bitcamp.kym.booking.service.BookingInsertService;
 import com.bitcamp.kym.booking.service.BookingListService;
+import com.bitcamp.kym.booking.service.BookingSuccessService;
 import com.bitcamp.kym.booking.service.BookingUpdateService;
 
 @RestController
@@ -44,6 +45,8 @@ public class BookingRestFulController {
 	@Autowired
 	private BookingAvailableService availableService;
 	
+	@Autowired
+	private BookingSuccessService successService;
 	
 	@CrossOrigin
 	@GetMapping
@@ -81,6 +84,15 @@ public class BookingRestFulController {
 	public ResponseEntity<BookingInfo> getEditBooking(@PathVariable("idx") int idx) {
 		
 		BookingInfo info = updateService.getUpdateForm(idx);
+		
+		return new ResponseEntity<BookingInfo>(info, HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@GetMapping("/{h_name}/{r_name}/{uId}")
+	public ResponseEntity<BookingInfo> getSuccessBooking(@PathVariable("h_name") String h_name, @PathVariable("r_name") String r_name, @PathVariable("uId") String uId) {
+		
+		BookingInfo info = successService.getSuccess(h_name,r_name,uId);
 		
 		return new ResponseEntity<BookingInfo>(info, HttpStatus.OK);
 	}

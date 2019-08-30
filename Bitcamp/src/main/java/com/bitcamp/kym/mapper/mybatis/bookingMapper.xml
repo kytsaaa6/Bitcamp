@@ -61,7 +61,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and
 		((#{s_date} between start_date and end_date)
 		or (#{e_date} between start_date and end_date))
-		
+	</select>
+	
+	<select id="successBooking" resultMap="resultBookingInfo" parameterType="String">
+		select *
+		from booking
+		where h_name=#{param1} and r_name=#{param2} and uId=#{param3}
 		
 	</select>
 
