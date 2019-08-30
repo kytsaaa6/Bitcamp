@@ -348,13 +348,13 @@
    		</div>
    		<h6 id="chkMsg"></h6>
    		<div id="u_info">
-   			<h5 style="color: black; font-size:30px;"><input name="uId" id="uId" value="kytsaaa" style="background-color: #F5F4F1; width:150px;"readonly> 님이 선택하신 예약 정보 입니다.</h5>
+   			<h5 style="color: black; font-size:30px;"><input name="uId" id="uId" style="background-color: #F5F4F1; width:150px;"readonly> 님이 선택하신 예약 정보 입니다.</h5>
    			<!-- <input name="b_date" id="b_date"> -->
    		</div>
    		
    		<div id="button">
    			<!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a> -->
-			<input type="submit" id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);">
+			<button type="button" id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></button>
    			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; height: 50px; border-radius: 20px; margin: 0 10px;" >무통장 입금</button>
 			<!-- <input type="submit" class="btn btn-outline-primary btn-lg" value="무통장입금"> -->
    			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; height: 50px; border-radius: 20px; margin-bottom: 5px; clear:both;">이전</button>

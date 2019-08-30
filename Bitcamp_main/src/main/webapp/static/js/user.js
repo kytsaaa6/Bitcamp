@@ -248,6 +248,8 @@ function resvAction(contentid, roomnum) {
 			 $('#r_name').val(data.roomname);
 			 $('#r_price').val(data.price);
 			 
+			 uId2(sessionStorage.getItem('userIdx'));
+			 
 			 resvAction2(contentid);
 
 		},
@@ -256,7 +258,21 @@ function resvAction(contentid, roomnum) {
 		}
 
 	})
-	
+
+	function uId2(idx) {
+		   
+	      $.ajax({
+	         url : 'http://13.209.40.5:8080/bitcamp/rest-users/' + idx,
+	         type : 'GET',
+	         success : function(data) {
+	            
+	            //원하는 곳에 id 넣어주면 됨
+	            $('#uId').val(data.id);
+	         },
+	      });
+	   }
+	}
+
 	
 	/*방 페이지에서 예약 버튼 작동시 - 호텔 데이터*/
 function resvAction2(contentid) {
@@ -288,9 +304,9 @@ function resvAction2(contentid) {
 				$('#h_img_s').val(firstimage);
 				
 				if(firstimage==undefined) {
-					$('#h_img').attr('src', '/bitcamp/img/payment_medium.png');
+					$('#h_photo').attr('src', '/bitcamp/img/hotel.jpg');
 				} else {
-					$('#h_img').attr('src', firstimage);
+					$('#h_photo').attr('src', firstimage);
 				}
 				
 				
@@ -317,6 +333,8 @@ function resvAction2(contentid) {
 		 $('#s_date2').append($('#datepicker').val());
 		 $('#e_date2').append($('#datepicker2').val());
 		 $('#uId2').append($('#uId').val());
+		 
+		 
 		
 	})
 	
@@ -333,7 +351,7 @@ function resvAction2(contentid) {
 		location.href='#sectionConfirm';
     	
         $.ajax({
-            url : 'http://localhost:8080/booking/rest/booking',
+            url : 'http://15.164.100.85:8080/booking/rest/booking',
             type : 'POST',
             data : {
                 h_name : $('#h_name').val(),
@@ -472,7 +490,7 @@ function resvAction2(contentid) {
     	$('#chkMsg').empty();
     	
         $.ajax({
-            url : 'http://localhost:8080/booking/rest/booking/aval',
+            url : 'http://15.164.100.85:8080/booking/rest/booking/aval',
             type : 'get',
             data : {
                 h_name : $('#h_name').val(),
@@ -498,46 +516,16 @@ function resvAction2(contentid) {
 	let timer;
     
     $('#bForm').submit(function() {
-    	popup = window.open("about:blank", '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
-    	
-//    		e.preventDefault();
-    	
-    		$.ajax({
-    			url : 'http://localhost:8080/booking/rest/kakaoPay',
-    			type : 'get',
-    			data : {
-    	            h_name : $('#h_name').val(),
-    	            h_photo : $('#h_img_s').val(),
-    	            h_address : $('#h_address').val(),
-    	            r_name : $('#r_name').val(),
-    	            r_price : $('#r_price').val(),
-    	            s_date : $('#datepicker').val(),
-    	            e_date : $('#datepicker2').val(),
-    	            uId : $('#uId').val()
-    			},
-    			success : function(res){
-    				console.log(res);
-    				alert(res);
-    				popup.location.href=res;
-
-    			},
-    			error: function(e) {
-    				alert(e);
-    				console.log(e);
-    			}
-    		})
-
-    	
-    	
-//    	kakaopay();
+    	popup = window.open("about:blank", "test", 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+    	kakaopay();
     });
     
 
-//    	function kakaopay(){
-////    		e.preventDefault();
-//    		$.ajax({
-//    			url : 'http://localhost:8080/booking/rest/kakaoPay',
-//    			type : 'post',
+    	function kakaopay(){
+//    		e.preventDefault(e);
+    		$.ajax({
+    			url : 'http://localhost:8080/bitcamp/rest/kakaoPay',
+    			type : 'get',
 //    			data : {
 //    	            h_name : $('#h_name').val(),
 //    	            h_photo : $('#h_img_s').val(),
@@ -548,20 +536,24 @@ function resvAction2(contentid) {
 //    	            e_date : $('#datepicker2').val(),
 //    	            uId : $('#uId').val()
 //    			},
-//    			success : function(res){
-//    				console.log(res);
-//    				alert(res.next_redirect_pc_url);
-//    				res = JSON.parse(res);
-//    				console.log(res.next_redirect_pc_url);
-//    				popup = window.open(res.next_redirect_pc_url, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
-////    				timer = setInterval(function(){
-////    					if(popup.closed){
-////    						location.href="http://10.10.10.178:8080/hotel/mypage.to?nickname=${sessionScope.nick}"
-////    					}
-////    				}, 1000);
-//    			}
-//    		})
-//    	}
+    			success : function(res){
+    				console.log(res);
+    				alert(res);
+    				res = JSON.parse(res);
+    				console.log(res.next_redirect_pc_url);
+    				popup.location.href(res);
+//    				popup = window.open(res, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+//    				timer = setInterval(function(){
+//    					if(popup.closed){
+//    						location.href="http://10.10.10.178:8080/hotel/mypage.to?nickname=${sessionScope.nick}"
+//    					}
+//    				}, 1000);
+    			},
+    			error : function(e) {
+    				alert(e);
+    			}
+    		})
+    	}
 
 	
 	
@@ -601,4 +593,4 @@ function resvAction2(contentid) {
 //    })
 //    return false;
 //}
-}
+
