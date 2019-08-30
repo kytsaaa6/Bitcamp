@@ -228,22 +228,15 @@
 						<!-- kakao용,,, -->
                         <div class="service-box" id="userWithKakao" style="display: none;">
                             <div class="service-icon">
-                                <span class="fa fa-cogs fa-5x"></span>
+                                <div class="form-group" id="profile2">
+                                </div>
                             </div>
 
                             <form class="contactForm marginbot-40">
                                 <div class="form-group" id="id2">
-                                    
                                 </div>
-                                <div class="form-group">
-                                    name
-                                    <span class="form-control" id="name2"></span>
+                                <div class="form-group" id="name2">
                                 </div>
-                                <div class="form-group">
-                                    profile
-                                    <span class="form-control" id="phone2"></span>
-                                </div>
-                                
                             </form>
 
                             <div class="service-desc">

@@ -32,3 +32,10 @@
 #kakao-login-btn {
     margin-top: 10px;
 }
+
+#userWithKakao .service-icon{
+	margin-bottom: 20px;
+	clear: both;
+	display: block;
+	
+}

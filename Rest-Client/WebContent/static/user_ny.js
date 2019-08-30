@@ -242,15 +242,14 @@ function statusWithKakao() {
             Kakao.API.request({
                 url: '/v2/user/me',
                 success: function(res) {
+                	var email = user.kakao_account.email;
                 	
-                	var id = 'ID<span class="form-control">'+res.properties.kakao_account.email+'</span>';
+                	var id = 'ID<span class="form-control">'+email+'</span>';
         			var name = 'name<span class="form-control">'+res.properties.nickname+'</span>';
-                	var img = 'name<span class="form-control">'+res.properties.thumbnail_image+'';
+                	var img = 'profile<br><img src = "'+res.properties.thumbnail_image+'">';
                 	$('#userWithKakao #id2').html(id);
-                    console.log('닉넴'+res.properties.nickname);
-//                    console.log('프로필이미지'+res.properties.profile_image);
-//                    console.log('썸넬이미지'+res.properties.thumbnail_image);
-//                    console.log('카카오이메일'+res.kakao_account.email);
+                	$('#userWithKakao #name2').html(name);
+                	$('#userWithKakao #profile2').html(img);
                 },
                 fail: function(error) {
                     alert(JSON.stringify(error));
