@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	최초생성날짜: 2019-08-25 pm.07:25 
+	최종수정날짜: 2019-08-25 pm.07:25 
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ny.bit.member.dao.AdminDao">
+
+	<resultMap id="Admin" type="com.ny.bit.member.model.Admin">
+		<result property="idx" column="idx_a"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="regdate" column="regdate" javaType="java.util.Date"/>
+	</resultMap>
+	
+	<select id="selectAdById" resultMap="Admin">
+		select * from bitcamp.admin where id = #{id}	
+	</select>	
+	
+	<insert id="insertAdmin" parameterType="com.ny.bit.member.model.Admin">
+		insert into bitcamp.admin (ID, PW, NAME) 
+		values(#{id}, #{pw}, #{name})
+	</insert>
+	
+	
+	
+	
+</mapper>
