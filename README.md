@@ -21,32 +21,32 @@
 
 ### FE
 
->Html5
-Css3
-JavaScript + jQuery + Ajax
-Jsp + EL
-BootStrap 3.1.1
+>Html5  
+Css3  
+JavaScript + jQuery + Ajax  
+Jsp + EL  
+BootStrap 3.1.1  
 
 <br>
 
 ### BACK
 
->MySQL + Amazon MySQL
-Amazon RDS
-Amazon EC2
-Amazon Linux
-REST API / RESTFUL API
+>MySQL + Amazon MySQL  
+Amazon RDS  
+Amazon EC2  
+Amazon Linux  
+REST API / RESTFUL API  
 MyBatis
 
 <Br>
 
 ### OPEN API
 
->KAKAO LOGIN
-FINE DUST API(공공 미세먼지)
-KAKAO PAY
-KAKAO STORY
-NAVER BLOG SEARCH API
+>KAKAO LOGIN  
+FINE DUST API(공공 미세먼지)  
+KAKAO PAY  
+KAKAO STORY  
+NAVER BLOG SEARCH API  
 TOUR API
 
 
