@@ -31,24 +31,6 @@ $(document).ready(function(){
 	sessionStorage.setItem("userIdx", ${param.uIdx});
 	location.href= 'welcome.jsp';
 });
-//	getUserIdx();
-
-//넘겨야할 것들,,, 받는 쪽에서 만들어야 할 메서드 제작(일단 샘플 미니미니꺼로)
-/* function getUserIdx(){
-	$.ajax({
-//		url:'http://13.125.249.209:8080/adminclient/index.jsp',
-		url:'http://13.209.40.5:8080/client/info.jsp',
-		type: 'GET',
-		success: function(uIdx){
-			sessionStorage.setItem("userIdx", uIdx);
-			console.log(uIdx);
-		},
-		error: function(e){
-			console.log(e);
-		}
-		
-	});
-} */
 
 
 </script>

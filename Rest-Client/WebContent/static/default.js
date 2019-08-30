@@ -5,6 +5,8 @@
 
 $(document).ready(function() {
 	list();
+	kakao();
+	
 
 	// id check
 //	$('#id').focusout(function() {
@@ -37,6 +39,26 @@ $(document).ready(function() {
 //	});
 	
 });
+
+function kakao(){
+	Kakao.init('c92fdf9700af07e4c6d7df97d36e9bb4');
+    // 카카오 로그인 버튼을 생성합니다.
+
+	$('#kakao-login-btn').click(function(){
+		Kakao.Auth.login({
+            success: function(authObj) {
+                console.log(JSON.stringify(authObj));
+                console.log('로그인 되었습니다.');
+                location.href= 'mypage.jsp';
+
+            },
+            fail: function(error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+	});
+}
+
 
 function join() {
 	/* var formData = $('.contactForm').serializeObject(); */
@@ -104,12 +126,20 @@ function login() {
 				var n = sessionStorage.getItem("loginIdx");
 				console.log(n);
 				console.log(typeof n);
-//				location.replace("welcome.jsp");
+				location.replace("welcome.jsp");
 				
 				//user넘기는데 일단 미니미니꺼로 테스트!!
 //				location.replace("http://13.125.249.209:8080/adminclient/index.jsp?uIdx="+data);
+
+				//내꺼 배포경로로 체크 > 굿
 //				location.href = 'http://13.125.249.209:8080/adminclient/index.jsp?uIdx='+data;
-				location.replace("http://13.209.40.5:8080/client/info.jsp?uIdx="+data);
+				
+				//유리언니꺼로 체크체크 > 굿
+//				location.replace("http://52.78.80.232:8080/Bitcamp_Client/info.jsp?uIdx="+data);
+				
+				//용민님꺼 > 굿
+//				location.replace("http://15.164.210.154:8080/bitcamp/info.jsp?uIdx="+data);
+				
 			} 
 		},
 		error : function(data) {
@@ -122,29 +152,9 @@ function login() {
 	});
 }
 
-//
-////넘겨야할 것들,,, 받는 쪽에서 만들어야 할 메서드 제작(일단 샘플 미니미니꺼로)
-//function getUserIdx(){
-//	$.ajax({
-////		url:'http://13.125.249.209:8080/adminclient/index.jsp',
-//		url:'http://13.209.40.5:8080/client/info.jsp',
-//		type: 'GET',
-//		success: function(uIdx){
-//			sessionStorage.setItem("userIdx", uIdx);
-//			console.log(uIdx);
-//		},
-//		error: function(e){
-//			console.log(e);
-//		}
-//		
-//	});
-//}
-
-
 
 function list() {
 	$.ajax({
-		/* url:'http://localhost:8080/mc/rest/members', */
 		// restful로 우회접근
 //		url : 'http://localhost:8080/rc/list',
 		url : 'http://13.209.40.5:8080/rc/list',
@@ -208,10 +218,6 @@ function edit(idx) {
 			url : 'http://13.209.40.5:8080/bitcamp/rest-users/' + idx,
 			type : 'GET',
 			success : function(data) {
-				// alert(data.idx);
-				// alert(JSON.stringify(data));
-
-				// data =JSON.stringify(user);
 				$('#idx2').val(idx);
 				$('#id2').val(data.id);
 				$('#name2').val(data.name);
@@ -252,7 +258,6 @@ $('#editform').submit(function() {
 		complete : function() {
 			list();
 			$('#mEditForm').css('display', 'none');
-			// location.href = "#member";
 		}
 	});
 });
@@ -313,7 +318,6 @@ function joinAd() {
 
 
 function loginAdmin() {
-	//loginAdminId
 	$.ajax({
 //		url : 'http://localhost:8080/bitcamp/rest-admin/login',
 		url : 'http://13.209.40.5:8080/bitcamp/rest-admin/login',
@@ -330,16 +334,12 @@ function loginAdmin() {
 				console.log(data);
 				sessionStorage.setItem("loginAdminIdx", data);
 				var n = sessionStorage.getItem("loginAdminIdx");
-//				console.log(n);
-//				console.log(typeof n);
-				
-				
 				
 				//민희한테 넘길 url
-//				location.href = 'http://13.125.249.209:8080/adminclient?s='+n;
+				location.href = 'http://13.125.249.209:8080/adminclient/';
 
 				/*일단 임시로 내 url로 이동시킴*/
-				location.href = 'http://13.209.40.5:8080/client/welcome_admin.jsp';
+//				location.href = 'http://13.209.40.5:8080/client/welcome_admin.jsp';
 			}
 		},
 		error : function(data) {

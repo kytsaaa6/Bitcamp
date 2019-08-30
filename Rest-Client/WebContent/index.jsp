@@ -215,6 +215,9 @@
 							<button type="button" class="btn btn-skin btn-lg btn-block" onclick="login()">Login
 								Bitcamp</button>
 						</div>
+						<div class="text-center">
+							<a id="kakao-login-btn"><img src="static/img/kakao.png"></a>
+						</div>
 					</form>
 					
 					<!-- admin -->
@@ -503,7 +506,7 @@
 	<script src="static/js/custom.js"></script>
 	<!-- <script src="static/contactform/contactform.js"></script> -->
 	<script src="static/default.js"></script>
-
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </body>
 
 </html>

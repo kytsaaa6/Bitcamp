@@ -70,13 +70,6 @@ public class RestUserController {
 		return new ResponseEntity<String>(result>0?"success":"fail", HttpStatus.OK);
 	}
 	
-	//verify 우회한다면 detour 써도 되지만 지금 우회 안하므로 따로 컨트롤러 만듬.
-//	@CrossOrigin
-//	@RequestMapping("/verify")
-//	public ResponseEntity<String> verify(@RequestParam("id")String id, @RequestParam("code") String code) {
-//		return new ResponseEntity<String>(verifyService.getVerify(id, code) > 0 ? "success":"fail", HttpStatus.OK);
-//	}
-	
 	//User 정보 가져오기
 	@CrossOrigin
 	@GetMapping(value = "/{idx}")
@@ -92,28 +85,9 @@ public class RestUserController {
 	public ResponseEntity<User> getUser(@RequestParam("id")String id){
 		System.out.println(id);
 		User user = editService.getOne(id);
-//		response.setContentType("application/json");
-//		response.setCharacterEncoding("UTF-8");
-//		LoginUser loginuser = editService.getOne(id).toLoginUser();
 		System.out.println(user);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	
-	
-//	//User 정보 가져오기: session에서 불러올 때
-//	@CrossOrigin
-//	@GetMapping(value = "/session/{id:.+}" , produces = "application/json")
-////	@RequestMapping(value = "/session/{id:.+}")
-////	@ResponseBody
-//	public ResponseEntity<String> getUser(@PathVariable("id") String id, HttpServletResponse response){
-//		System.out.println(id);
-//		User user = editService.getOne(id);
-//		response.setContentType("application/json");
-//		response.setCharacterEncoding("UTF-8");
-////		LoginUser loginuser = editService.getOne(id).toLoginUser();
-//		System.out.println(user);
-//		return new ResponseEntity<String>(user.toString(), HttpStatus.OK);
-//	}
 	
 	
 	//user 수정
@@ -181,51 +155,6 @@ public class RestUserController {
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
-//	//login 이전버전,,, string + id로
-//	@CrossOrigin
-//	@RequestMapping(value = "/login" , method = RequestMethod.POST)
-//	@ResponseBody
-//	public ResponseEntity<String> loginUser(@RequestBody LoginReqUser user ,
-//			/* @RequestParam("id")String id, @RequestParam("pw") String pw, */ 
-//			HttpServletRequest request) {
-//		String result = "";
-//		String id = user.getId();
-//		String pw = user.getPw();
-//		int loginChek = loginService.login(id, pw, request);
-//		switch (loginChek) {
-//		/* result : 
-//		 * 0 : id pw 틀림
-//		 * 1 : 탈퇴한 회원
-//		 * 2 : 이메일 미인증
-//		 * 3 : 인증까지 완료 
-//		 * */
-//		
-//		case 0:
-//			result = "fail";
-//			break;
-//		case 1:
-//			result = "out";
-//			break;
-//		case 2:
-//			result = "yet";
-//			break;
-//		case 3:
-//			//idx 가져오기
-//			int idx = editService.getOne(id).getIdx();
-//			
-////				result = id;
-//			result = String.valueOf(idx);
-//			
-//			break;
-//		}
-//		System.out.println("cont result / login:   " + result + loginChek);
-//		
-//		/*session check*/
-//		HttpSession session = request.getSession();
-//		System.out.println("session check: " + session.getAttribute("loginInfo"));
-//		
-//		return new ResponseEntity<String>(result, HttpStatus.OK);
-//	}
 	
 	
 	//logout

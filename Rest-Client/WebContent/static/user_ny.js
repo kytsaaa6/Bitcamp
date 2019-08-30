@@ -7,6 +7,8 @@ $(document).ready(function() {
 //	test_getAddress() ;
 	getDustList();
 	tripPlaceDust('서울특별시 강서구 곰달래로 247');
+	 statusWithKakao() ;
+//	alert(sessionStorage.getItem(loginIdx));
 });
 
 function logout() {
@@ -215,6 +217,56 @@ function evalFineDust(d){
 	}
 	return msg;
 }
+
+
+function goReview() {
+	var data = sessionStorage.getItem("loginIdx");
+	location.replace("http://52.78.80.232:8080/Bitcamp_Client/info.jsp?uIdx="+data);
+}
+function goBook() {
+	var data = sessionStorage.getItem("loginIdx");
+	location.replace("http://15.164.210.154:8080/bitcamp/info.jsp?uIdx="+data);
+}
+
+
+//상태 체크
+function statusWithKakao() {
+	Kakao.init('c92fdf9700af07e4c6d7df97d36e9bb4');
+    Kakao.Auth.getStatusInfo(function(statusObj) {
+        console.log('현재정보'+JSON.stringify(statusObj));
+        if (statusObj.status == 'connected') {
+            var user = statusObj.user;
+            $('#userNoKakao').css('display', 'none');
+            $('#userWithKakao').css('display', 'block');
+           
+            Kakao.API.request({
+                url: '/v2/user/me',
+                success: function(res) {
+                	
+                	var id = 'ID<span class="form-control">'+res.properties.kakao_account.email+'</span>';
+        			var name = 'name<span class="form-control">'+res.properties.nickname+'</span>';
+                	var img = 'name<span class="form-control">'+res.properties.thumbnail_image+'';
+                	$('#userWithKakao #id2').html(id);
+                    console.log('닉넴'+res.properties.nickname);
+//                    console.log('프로필이미지'+res.properties.profile_image);
+//                    console.log('썸넬이미지'+res.properties.thumbnail_image);
+//                    console.log('카카오이메일'+res.kakao_account.email);
+                },
+                fail: function(error) {
+                    alert(JSON.stringify(error));
+                }
+            });
+            
+            console.log('연결된사용자 정보'+user.kakao_account.email);
+        } 
+    });
+}
+
+
+
+
+
+
 
 
 

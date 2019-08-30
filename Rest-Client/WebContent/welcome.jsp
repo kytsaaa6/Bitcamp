@@ -12,8 +12,8 @@
 <meta name="author" content="">
 
 <script>
-	var id = sessionStorage.getItem("userIdx");
-	alert('idx: '+id);
+	var idx = sessionStorage.getItem("loginIdx");
+	alert('idx: '+idx);
 </script>
  
 <title>Welcome to BITCAMP</title>
@@ -69,8 +69,8 @@
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="active"><a href="#intro">Home</a></li>
-								<li><a href="#">Book</a></li>
-								<li><a href="#">Review</a></li>
+								<li><a onclick="goBook()">Book</a></li>
+								<li><a onclick="goReview()">Review</a></li>
 								<li><a href="mypage.jsp">mypage</a></li>
 								<li><a onclick="logout()">Logout</a></li>
 							</ul>
@@ -118,8 +118,8 @@
 							</h3>
 							<br>
 							<div class="">
-								<a class="btn btn-theme btn-sm btn-min-block" href="#">Book</a><a
-									class="btn btn-theme btn-sm btn-min-block" href="#">Review</a>
+								<a class="btn btn-theme btn-sm btn-min-block" onclick="goBook()">Book</a><a
+									class="btn btn-theme btn-sm btn-min-block" onclick="goReview()">Review</a>
 							</div>
 						</div>
 					</div>
@@ -144,8 +144,8 @@
 							</h3>
 							<br>
 							<div class="">
-								<a class="btn btn-theme btn-sm btn-min-block" href="#">Book</a><a
-									class="btn btn-theme btn-sm btn-min-block" href="#">Review</a>
+								<a class="btn btn-theme btn-sm btn-min-block" onclick="goBook()">Book</a><a
+									class="btn btn-theme btn-sm btn-min-block" onclick="goReview()">Review</a>
 							</div>
 						</div>
 					</div>

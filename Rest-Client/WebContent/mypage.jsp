@@ -70,7 +70,9 @@
                                 <li class="active"><a href="welcome.jsp">Home</a></li>
                                 <li><a href="#myinfo">my info</a></li>
                                 <li><a href="#mybooking">my booking</a></li>
-                                <li><a href="#myinfo">Review</a></li>
+                                <li><a href="#review">Review</a></li>
+								<li><a onclick="goBook()">Book</a></li>
+								<li><a onclick="goReview()">Review</a></li>                                
                                 <li><a onclick="logout()">Logout</a></li>
 							</ul>
 						</div>
@@ -191,7 +193,7 @@
                     <div class="wow fadeInLeft" data-wow-delay="0.2s">
                         <!--mem-->
                         <!-- 원래 서비스용,,, -->
-                        <div class="service-box">
+                        <div class="service-box" id="userNoKakao">
                             <div class="service-icon">
                                 <span class="fa fa-cogs fa-5x"></span>
                             </div>
@@ -222,6 +224,36 @@
                                 <a class="btn btn-skin" id="btn-out">want to sign out</a>
                             </div>
                         </div><!--mem / servicebox-->
+                        
+						<!-- kakao용,,, -->
+                        <div class="service-box" id="userWithKakao" style="display: none;">
+                            <div class="service-icon">
+                                <span class="fa fa-cogs fa-5x"></span>
+                            </div>
+
+                            <form class="contactForm marginbot-40">
+                                <div class="form-group" id="id2">
+                                    
+                                </div>
+                                <div class="form-group">
+                                    name
+                                    <span class="form-control" id="name2"></span>
+                                </div>
+                                <div class="form-group">
+                                    profile
+                                    <span class="form-control" id="phone2"></span>
+                                </div>
+                                
+                            </form>
+
+                            <div class="service-desc">
+                                <!--여기에 idx 넣어서 보내준다!-->
+                                <a class="btn btn-skin" id="btn-edit">want to edit info</a>
+                                <a class="btn btn-skin" id="btn-out">want to sign out</a>
+                            </div>
+                        </div><!--mem / servicebox-->
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -278,11 +310,6 @@
                                     <td>&#36;200,000</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8">
-                                        222224444
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>222</td>
                                     <td>코스테이</td>
                                     <td>서울특별시 강서구 곰달래로 247</td>
@@ -291,11 +318,6 @@
                                     <td>2019-08-27</td>
                                     <td>2019-08-26 14:45:30</td>
                                     <td>&#36;200,000</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="8">
-                                        222224444
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td>333</td>
@@ -309,7 +331,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="8">
-                                        222224444
+                                        관리자에게 문의하기
                                     </td>
                                 </tr>
 
@@ -351,36 +373,6 @@
                         
                     </div>
                 </div>
-
-
-                <!---->
-                <div class="row col-md-6 col-md-offset-3">
-                    <div class="">
-                        <div class="wow fadeInLeft" data-wow-delay="0.2s">
-                            <!--mem-->
-                            <!-- 원래 서비스용,,, -->
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <span class="fa fa-cogs fa-5x"></span>
-                                </div>
-
-                                <form class="contactForm marginbot-40">
-                                    <div class="form-group">
-                                        ID
-                                        <span class="form-control" id="id"></span>
-                                    </div>
-
-                                </form>
-
-                                <div class="service-desc">
-                                    <!--여기에 idx 넣어서 보내준다!-->
-                                    <a class="btn btn-skin" id="btn-edit">want to edit info</a>
-                                    <a class="btn btn-skin" id="btn-out">want to sign out</a>
-                                </div>
-                            </div>
-                            <!--mem / servicebox-->
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -427,7 +419,7 @@
 	<script src="static/js/custom.js"></script>
 	<!-- <script src="static/contactform/contactform.js"></script> -->
 	<script src="static/user_ny.js"></script>
-
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </body>
 
 </html>
