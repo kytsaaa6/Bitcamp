@@ -178,10 +178,9 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div id="wBox" style="display: none">
 						<form id="wForm" onsubmit="return false;" method="post" class="contactForm">
-							<input name="idx_c" id="idx_c" value="" class="form-control" readonly><br><!-- ID받아와서 바꿔야함 --> 
-							<select name="idx_h" id="idx_h" class="form-control"></select>
-							<!-- <input type="text" name="idx_h" id="idx_h" placeholder="IDX_h" class="form-control"><br> -->
-							rating <input type="text" name="rate" id="rate" class="rating rating-loading" data-size="xs"><br> 
+							<input name="idx_c" id="idx_c" class="form-control" readonly> 
+							<input type="text" name="idx_h" id="idx_h" placeholder="IDX_h" class="form-control"><br>
+							<input type="text" name="rate" id="rate" class="rating rating-loading" data-size="xs"><br> 
 							<textarea class="form-control" name="content" id="content" rows="5" placeholder="share your expirence" required></textarea>
 							<br> <input type="submit" value="WRITE" onclick="wForm();" class="btn btn-skin btn-lg btn-block">
 						</form>
@@ -197,10 +196,10 @@
 					<div id="eBox" style="display: none">
 						<form id="eForm" onsubmit="return false;" method="post" class="contactForm">
 							<input type="hidden" name="idx" id="idx"> 
-							IDX_c <input type="text" name="idx_c" id="eIdx_c" class="form-control" readonly><br> 
-							IDX_h <input type="text" name="idx_h" id="eIdx_h" class="form-control" required><br>
-							rating <input type="text" name="rate" id="eRate" class="rating rating-loading" data-size="xs"><br> 
-							content <textarea class="form-control" name="content" id="eContent" rows="5" required></textarea><br> 
+							<input type="text" name="idx_c" id="eIdx_c" class="form-control" readonly><br> 
+							<input type="text" name="idx_h" id="eIdx_h" placeholder="IDX_h" class="form-control" required><br>
+							<input type="text" name="rate" id="eRate" class="rating rating-loading" data-size="xs"><br> 
+							<textarea class="form-control" name="content" id="eContent" rows="5" placeholder="share your expirence" required></textarea><br> 
 							<input type="submit" value="EDIT" onclick="eForm();" class="btn btn-skin btn-lg btn-block">
 						</form>
 					</div>
@@ -258,15 +257,16 @@
 				type : 'GET',
 				success : function(data) {
 
+					var idx =sessionStorage.getItem('userIdx');
 					var html = '';
 					for (var i = 0; i < data.length; i++) {
 						html += '<div>\n';
-						html += '글번호. no.로 표시할 예정 ::: ' + data[i].idx + '<br>\n';
-						html += '회원idx를 아이디로 받아오기 마지막줄에? ::: ' + data[i].idx_c + '<br>\n';
-						html += '날짜(오른쪽 정렬하기) ::: ' + data[i].date + '<br>\n';
-						html += '예약번호 idx_h를 호텔 이름으로 받아오기(예약날짜 룸타입까지 받아서 회원 idx로 조회 예약내역이 주루룩 출력되게? 셀렉트 옵션으로 할지? ) ::: ' + data[i].idx_h + '<br>\n';
-						html += '내용인데 타이틀 없애고 내용만 출력하기 ::: ' + data[i].content + '<br>\n';
-						html += 'rating한건데 별 그림으로 출력되어야 해 ::: '+ data[i].rate +'<br>\n';
+						html += 'No ::: ' + data[i].idx + '<br>\n';
+						html += 'ID ::: ' + data[i].idx_c + '<br>\n';
+						html +=  data[i].date + '<br>\n';
+						html += 'HOTEL ::: ' + data[i].idx_h + '<br>\n';
+						html += 'STAR ::: '+ data[i].rate +'<br>\n';
+						html += data[i].content + '<br>\n';
 						html += '<button onclick="edt(' + data[i].idx + ')" class="btn btn-skin btn-lg" id="lBtn">EDIT</button>';
 						html += '<button onclick="del(' + data[i].idx + ')" class="btn btn-skin btn-lg" id="lBtn">DELETE</button><br>\n';
 						html += '<div>'
@@ -276,6 +276,7 @@
 			});
 		}
 
+		
 		function del(idx) {
 			
 			if (confirm('삭제하시겠습니까?')) {
@@ -294,6 +295,7 @@
 			}
 		}
 
+		
 		function edt(idx) {
 
 			$('#wBox').css('display', 'none');
@@ -316,33 +318,70 @@
 			});
 		}
 
-		function wrb(idx){
-			var idx = 13;
-			//var idx = ${param.uId};
-			
+
+		/* 세션 받아와서 아이디로  */
+		function wrb() {
+
 			$('#wBox').css('display', 'block');
 			$('#wrb').css('display', 'none');
 			$('#onv').css('display', 'none');
 			$('#cnv').css('display', 'none');
-/* 			
-
-세션에서  user idx	받아오면 폼에 넣어서 disabled 하고
-용민님 json받아서 idx로 고객 예약 내역을 select - option으로 보이게 해야 함 
-
-			$.ajax({
-				url : 'http://15.164.100.85:8080/booking/rest/booking/'+idx,
-				type: 'GET',
-				success : function(data) {
-					
-					var html = '';
-					for (var h = 0; h < data.length; h++){
-						html += '<option value="' + data[h].h_name +', '+ data[h].s_date +'-'+ data[h].e_date +'">';
-					}
-					$('#idx_h').html(html);
-				}
-			}); */
 			
-		}
+			var idx =sessionStorage.getItem('userIdx');
+
+				$.ajax({
+					url : 'http://13.209.40.5:8080/bitcamp/rest-users/'+ idx,
+					type : 'GET',
+					success : function(data) {
+
+						//원하는 곳에 id 넣어주면 됨
+						$('#idx_c').val(data.id);
+					},
+				});
+			}
+
+		/* 			
+
+		 세션에서  user idx	받아오면 폼에 넣어서 disabled 하고
+		 용민님 json받아서 idx로 고객 예약 내역을 select - option으로 보이게 해야 함 
+
+		$
+				.ajax({
+					url : 'http://15.164.100.85:8080/booking/rest/booking/'
+							+ idx,
+					type : 'GET',
+					success : function(data) {
+
+						var html = '';
+						for (var h = 0; h < data.length; h++) {
+							html += '<option value="' + data[h].h_name +', '+ data[h].s_date +'-'+ data[h].e_date +'">';
+						}
+						$('#idx_h').html(html);
+					}
+				});
+		
+
+			var idx = 21;
+			
+			$.ajax({
+					url : 'http://15.164.100.85:8080/booking/rest/booking/'+ idx,
+					type : 'GET',
+					success : function(data) {
+
+							var h_name = data.h_name;
+							var s_date = data.s_date;
+							var e_date = data.e_date;
+
+							$('#idx_h').val(data.h_name);
+
+							sessionStorage.getItem('userIdx');
+						}
+
+					});
+	
+			 
+
+		}*/
 
 		function eForm() {
 
@@ -352,7 +391,7 @@
 
 			$.ajax({
 				//url : 'http://localhost:8080/review/rest-review/'+ idx,
-				url: 'http://52.78.80.232:8080/review/rest-review/'+ idx,
+				url : 'http://52.78.80.232:8080/review/rest-review/' + idx,
 				type : 'PUT',
 				data : JSON.stringify({
 					idx : idx,
@@ -383,7 +422,7 @@
 
 			$.ajax({
 				//url : 'http://localhost:8080/review/rest-review',
-				url: 'http://52.78.80.232:8080/review/rest-review',
+				url : 'http://52.78.80.232:8080/review/rest-review',
 				type : 'POST',
 				data : $('#wForm').serialize(),
 				success : function(data) {
@@ -394,35 +433,35 @@
 					$('#eBox').css('display', 'none');
 					$('#wBox').css('display', 'none');
 					list();
-					
+
 				}
 
 			});
-			
+
 		}
-		
+
 		Kakao.init('4713c1766943d46dfc46037c003075bb');
-		
-	    function shareStory() {
-	      Kakao.Story.share({
-	        url: 'http://13.209.40.5:8080/client',
-	        text: '비트캠프에 놀러오세요!'
-	      });
-	    }
-	    
+
+		function shareStory() {
+			Kakao.Story.share({
+				url : 'http://13.209.40.5:8080/client',
+				text : '비트캠프에 놀러오세요!'
+			});
+		}
+
 		function apitest() {
-			
+
 			$('#searchList').css('display', 'block');
 			$('#onv').css('display', 'none');
 			$('#cnv').css('display', 'block');
-			
+
 			$.ajax({
 				//url : 'http://localhost:8080/review/naver',
 				url : 'http://52.78.80.232:8080/review/naver',
 				type : 'get',
 				dataType : 'json',
 				success : function(data) {
- 					console.log('test 01  ' + data.lastBuildDate);
+					console.log('test 01  ' + data.lastBuildDate);
 					console.log('test 02' + data.items);
 					var html = '';
 					for (var i = 0; i < data.items.length; i++) {
@@ -430,9 +469,10 @@
 						html += data.items[i].title + '\t';
 						html += data.items[i].postdate + '\t';
 						html += data.items[i].bloggername + '<br>\n';
-						html += '<a href="'+ data.items[i].link +'">'+ data.items[i].link +'</a><br>\n';
+						html += '<a href="'+ data.items[i].link +'">'
+								+ data.items[i].link + '</a><br>\n';
 						html += data.items[i].description + '<br>\n';
-						html +='<br><br>'
+						html += '<br><br>'
 						html += '<div>'
 					}
 					$('#searchList').html(html);
@@ -440,8 +480,8 @@
 				}
 			});
 		}
-		
-		function cnv(){
+
+		function cnv() {
 			$('#searchList').css('display', 'none');
 			$('#onv').css('display', 'block');
 			$('#cnv').css('display', 'none');

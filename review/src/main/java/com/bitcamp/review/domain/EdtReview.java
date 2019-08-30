@@ -3,8 +3,8 @@ package com.bitcamp.review.domain;
 public class EdtReview {
 
 	private int idx;
-	private int idx_c;
-	private int idx_h;
+	private String idx_c;
+	private String idx_h;
 	private int rate;
 	private String content;
 	
@@ -17,16 +17,16 @@ public class EdtReview {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public int getIdx_c() {
+	public String getIdx_c() {
 		return idx_c;
 	}
-	public void setIdx_c(int idx_c) {
+	public void setIdx_c(String idx_c) {
 		this.idx_c = idx_c;
 	}
-	public int getIdx_h() {
+	public String getIdx_h() {
 		return idx_h;
 	}
-	public void setIdx_h(int idx_h) {
+	public void setIdx_h(String idx_h) {
 		this.idx_h = idx_h;
 	}
 	public int getRate() {

@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.review.dao.InterfaceDao;
@@ -14,7 +15,7 @@ public class WriteService {
 
 	private InterfaceDao dao;
 
-	@Inject
+	@Autowired
 	private SqlSessionTemplate template;
 
 	public int write(Review review, HttpServletRequest req) {
