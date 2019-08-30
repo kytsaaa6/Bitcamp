@@ -23,3 +23,6 @@ BitcampServer/.settings/org.eclipse.wst.common.project.facet.core.xml
 BitcampServer/.settings/org.eclipse.wst.validation.prefs
 BitcampServer/.settings/org.springframework.ide.eclipse.beans.core.prefs
 BitcampServer/.settings/org.springframework.ide.eclipse.core.prefs
+BitcampServer/target/classes/com/bitcamp/ad/controller/ApiTest.class
+BitcampServer/target/m2e-wtp/web-resources/META-INF/maven/com.bitcamp/ad/pom.properties
+BitcampServer/target/m2e-wtp/web-resources/META-INF/maven/com.bitcamp/ad/pom.properties
