@@ -338,7 +338,7 @@
  			<h4>체크인</h4>
  				<h5><input type="text" id="datepicker" name="s_date"></h5>
   			<h4>체크아웃</h4>
-  				<h5><input type="text" id="datepicker2" name="e_date"></h5>
+  				<h5><input onchange="aval()" type="text" id="datepicker2" name="e_date"></h5>
  		</div>
    		<div id="r_info">
    			<h4>룸 정보</h4>
@@ -355,7 +355,7 @@
    		<div id="button">
    			<!-- <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></a> -->
 			<button type="button" id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; float: left; background-image: url(/bitcamp/img/payment_medium.png);"></button>
-   			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; height: 50px; border-radius: 20px; margin: 0 10px;" >무통장 입금</button>
+   			<button id="mumu" class="btn btn-lg btn-primary btn-block text-uppercase" onclick="payment()" type="button" style="width:150px; height: 50px; border-radius: 20px; margin: 0 10px;" >무통장 입금</button>
 			<!-- <input type="submit" class="btn btn-outline-primary btn-lg" value="무통장입금"> -->
    			<button id="reset" class="btn btn-lg btn-primary btn-block text-uppercase" type="reset" style="width:150px; height: 50px; border-radius: 20px; margin-bottom: 5px; clear:both;">이전</button>
    			
@@ -419,7 +419,7 @@
               		</th>
               	</tr>
               	<tr>
-              		<th colspan="2"><button id="mupay" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 입금 확인</button>
+              		<th colspan="2"><button id="mupay" onclick="payment2()" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px;" > 입금 확인</button>
               		<button id="cancel" class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="width:150px; border-radius: 10px; background-color: white; color: black;" > 예약 취소</button>
               		</th>
               	</tr>

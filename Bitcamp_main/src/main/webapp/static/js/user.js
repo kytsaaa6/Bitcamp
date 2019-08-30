@@ -21,12 +21,8 @@ function hotelList(pageNo) {
 		dataType: 'json',
 		success : function(data) {
 			
-			//alert('여기 오니 07 ');
-			
 			//호텔리스트 출력
 			var itemlist = data.response.body.items.item;
-			
-			//alert('itemlist.length 아이템 길이는? '+itemlist.length);
 			
 			var output ='';
 			
@@ -97,8 +93,9 @@ function hotelList(pageNo) {
 				$('#paging').remove();
 			}
 			
+		
 		}
-	})
+	});
 }
 
 //호텔 상세보기 01
@@ -141,9 +138,9 @@ function hotelDetailPage() {
 				modal.find('#hIntro').text(overview);
 				
 			}
-		})
+		});
 		
-	})
+	});
 }
 
 /*호텔 별 방 리스트*/
@@ -211,8 +208,8 @@ function hotelRoomList() {
 					 modal.find('.modal-body').text('등록된 방이 없습니다!');
 				 }
 			 }
-		 })
-	}) 
+		 });
+	});
 } 
 
 
@@ -257,7 +254,8 @@ function resvAction(contentid, roomnum) {
 			alert(e);
 		}
 
-	})
+	});
+}
 
 	function uId2(idx) {
 		   
@@ -268,9 +266,9 @@ function resvAction(contentid, roomnum) {
 	            
 	            //원하는 곳에 id 넣어주면 됨
 	            $('#uId').val(data.id);
-	         },
+	         }
 	      });
-	   }
+	   
 	}
 
 	
@@ -313,36 +311,41 @@ function resvAction2(contentid) {
 
 //				<img src="'+firstimage+'" class="card-img-top" width="100%" height="300px" >
 			}
-		})
+		});
 		
 	
 }
 	
-	$('#mumu').click(function() {
+	function payment(){
 		
-		location.href='#sectionPayment';
+				location.href='#sectionPayment';
+				
+				var img_src = $('#h_img').attr("src");
+				
+				 $('#h_name2').append($('#h_name').val());
+//				 $('#h_img2').attr('src', img_src);
+//				 $('#h_img_s2').append($('#h_img_s').val());
+//				 $('#h_address2').append($('#h_address').val());
+				 $('#r_name2').append($('#r_name').val());
+				 $('#r_price2').append($('#r_price').val());
+//				 $('#s_date2').append($('#datepicker').val());
+//				 $('#e_date2').append($('#datepicker2').val());
+//				 $('#uId2').append($('#uId').val());
+//				 
+				 
+				
+
+
 		
-		var img_src = $('#h_img').attr("src");
 		
-		 $('#h_name2').append($('#h_name').val());
-		 $('#h_img2').attr('src', img_src);
-		 $('#h_img_s2').append($('#h_img_s').val());
-		 $('#h_address2').append($('#h_address').val());
-		 $('#r_name2').append($('#r_name').val());
-		 $('#r_price2').append($('#r_price').val());
-		 $('#s_date2').append($('#datepicker').val());
-		 $('#e_date2').append($('#datepicker2').val());
-		 $('#uId2').append($('#uId').val());
-		 
-		 
-		
-	})
+	} 
+
+	function payment2(){
 	
-	$('#mupay').click(function() {
 //		console.log(payChk());
 //		alert(payChk());
 		payChk();
-	})
+	}
 	
 	
 //	입금 확인 클릭 시 -- 예약현황 추가
@@ -377,7 +380,7 @@ function resvAction2(contentid) {
     		error : function(e) {
     			alert(e);
     		}
-        })
+        });
         return false;
     }
 	
@@ -447,13 +450,14 @@ function resvAction2(contentid) {
     });
     
     
-    
-    
-    $('#datepicker2').change(function() {
+    function aval(){
     	
    		r_price();
    		available();
-    });
+    	
+    }
+  	
+
     
     
     function r_price()
@@ -509,7 +513,7 @@ function resvAction2(contentid) {
     		error : function(e) {
     			alert(e);
     		}
-        })
+        });
     }
 
 	let popup;
@@ -552,7 +556,7 @@ function resvAction2(contentid) {
     			error : function(e) {
     				alert(e);
     			}
-    		})
+    		});
     	}
 
 	
