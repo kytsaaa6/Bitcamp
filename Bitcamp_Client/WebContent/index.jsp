@@ -20,7 +20,7 @@
 <link href="color/default.css" rel="stylesheet">
 <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
 <style>
-#reviewList {
+.ll {
 	margin: 40px;
 	text-align: left;
 }
@@ -167,6 +167,8 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div id="writeReviewBtn">
 					<input type="submit" id="wrb" value="write review" onclick="wrb();" class="btn btn-skin btn-lg btn-block">
+					<input type="submit" id="onv" value="search hotel review at naver" onclick="apitest();" class="btn btn-skin btn-lg btn-block">
+					<input type="submit" id="cnv" value="close naver" onclick="cnv();" class="btn btn-skin btn-lg btn-block" style="display: none">
 				</div>
 			</div>
 		</div>
@@ -205,12 +207,18 @@
 				</div>
 			</div>
 		</div>
-
+	<div class="container">
+		<div class="row marginbot-80">
+			<div class="col-md-8 col-md-offset-2">
+				<div id="searchList" class="ll"></div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row marginbot-80">
 			<div class="col-md-8 col-md-offset-2">
 			<a href="javascript:shareStory()"><img src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"/></a>
-				<div id="reviewList"></div>
+				<div id="reviewList" class="ll"></div>
 			</div>
 		</div>
 	</div>
@@ -269,6 +277,7 @@
 		}
 
 		function del(idx) {
+			
 			if (confirm('삭제하시겠습니까?')) {
 				$.ajax({
 					//url : 'http://localhost:8080/review/rest-review/'+ idx,
@@ -289,6 +298,8 @@
 
 			$('#wBox').css('display', 'none');
 			$('#eBox').css('display', 'block');
+			$('#onv').css('display', 'none');
+			$('#cnv').css('display', 'none');
 
 			$.ajax({
 				//url : 'http://localhost:8080/review/rest-review/'+ idx,
@@ -311,6 +322,8 @@
 			
 			$('#wBox').css('display', 'block');
 			$('#wrb').css('display', 'none');
+			$('#onv').css('display', 'none');
+			$('#cnv').css('display', 'none');
 /* 			
 
 세션에서  user idx	받아오면 폼에 넣어서 disabled 하고
@@ -333,6 +346,8 @@
 
 		function eForm() {
 
+			$('#onv').css('display', 'none');
+			$('#cnv').css('display', 'none');
 			var idx = $('#idx').val();
 
 			$.ajax({
@@ -349,6 +364,8 @@
 				contentType : 'application/json; charset=utf-8',
 				success : function(data) {
 					alert('수정되었습니다.');
+					$('#wrb').css('display', 'block');
+					$('#onv').css('display', 'block');
 					$('#eBox').css('display', 'none');
 					$('#wBox').css('display', 'none');
 					list();
@@ -372,6 +389,10 @@
 				success : function(data) {
 					$('#wForm')[0].reset();
 					alert(data);
+					$('#wrb').css('display', 'block');
+					$('#onv').css('display', 'block');
+					$('#eBox').css('display', 'none');
+					$('#wBox').css('display', 'none');
 					list();
 					
 				}
@@ -379,20 +400,53 @@
 			});
 			
 		}
-
 		
+		Kakao.init('4713c1766943d46dfc46037c003075bb');
+		
+	    function shareStory() {
+	      Kakao.Story.share({
+	        url: 'http://13.209.40.5:8080/client',
+	        text: '비트캠프에 놀러오세요!'
+	      });
+	    }
+	    
+		function apitest() {
+			
+			$('#searchList').css('display', 'block');
+			$('#onv').css('display', 'none');
+			$('#cnv').css('display', 'block');
+			
+			$.ajax({
+				//url : 'http://localhost:8080/review/naver',
+				url : 'http://52.78.80.232:8080/review/naver',
+				type : 'get',
+				dataType : 'json',
+				success : function(data) {
+ 					console.log('test 01  ' + data.lastBuildDate);
+					console.log('test 02' + data.items);
+					var html = '';
+					for (var i = 0; i < data.items.length; i++) {
+						html += '<div>\n';
+						html += data.items[i].title + '\t';
+						html += data.items[i].postdate + '\t';
+						html += data.items[i].bloggername + '<br>\n';
+						html += '<a href="'+ data.items[i].link +'">'+ data.items[i].link +'</a><br>\n';
+						html += data.items[i].description + '<br>\n';
+						html +='<br><br>'
+						html += '<div>'
+					}
+					$('#searchList').html(html);
 
+				}
+			});
+		}
+		
+		function cnv(){
+			$('#searchList').css('display', 'none');
+			$('#onv').css('display', 'block');
+			$('#cnv').css('display', 'none');
+		}
 	</script>
-	<script type='text/javascript'>
-	Kakao.init('4713c1766943d46dfc46037c003075bb');
-    function shareStory() {
-      Kakao.Story.share({
-        url: 'http://13.209.40.5:8080/client',
-        text: '비트캠프에 놀러오세요!'
-      });
-    }
-	</script>
-	
 	
 	<!-- Core JavaScript Files -->
 	<script src="js/jquery.min.js"></script>
